@@ -1,19 +1,23 @@
 
 import './App.css';
-import { useEffect } from 'react';
-
-
-  
-   
+import Authentication from './components/Authentication';
+import Home from './components/Home';
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
+import ProtectedRoute from './utils/ProtectedRoute';
 function App() {
 
-  useEffect(()=>{
-    fetch("http://localhost:5000/api")
-    .then(res => res.json())
-    .then(data => console.log(data));
-   },[]);
+  // const {isLoggedIn, setLogin} = useState();
   return (
-    <h1>Hello</h1>
+    <Router>
+      <Routes>
+
+        <Route path='/' element = {<Navigate to ="/login" replace/>}/>
+        <Route path='/login' element = {<Authentication/>}/>
+        <Route path='/home' element = {<ProtectedRoute component={<Home/>}/>}/>
+        <Route path='*' element = {<div>page not found</div>}/>
+        
+      </Routes>
+    </Router>
   )
 };
 

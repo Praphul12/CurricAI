@@ -1,0 +1,133 @@
+/* ---------- Global Theme Colors ---------- */
+:root {
+  --bg-light: #eff6e0;
+  --bg-accent: #aec3b0;
+  --text-primary: #01161e;
+  --text-secondary: #124559;
+  --button-bg: #598392;
+  --button-hover: #124559;
+}
+
+/* ---------- Layout ---------- */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+}
+
+/* ---------- Authentication Page ---------- */
+
+.LoginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--bg-light) 0%,
+    var(--bg-accent) 100%
+  );
+  text-align: center;
+  padding: 20px;
+}
+.LoginCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* centers the button vertically */
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.AppTitle {
+  font-size: 2.2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.AppSubtitle {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+
+
+/* ---------- Button ---------- */
+.LoginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;     /* <-- ensures icon + text are centered */
+  gap: 10px;
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: fit-content;
+  margin-top: 1rem;
+}
+
+.LoginButton:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.03);
+}
+
+.LoginButton span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.AppLogo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Responsive Design ---------- */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .LoginContainer p {
+    font-size: 1.6rem;
+  }
+
+  .LoginButton {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .LoginContainer {
+    padding: 15px;
+  }
+
+  .LoginContainer p {
+    font-size: 1.3rem;
+  }
+
+  .LoginButton {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .AppLogo {
+    width: 60px;
+    height: 60px;
+  }
+}
