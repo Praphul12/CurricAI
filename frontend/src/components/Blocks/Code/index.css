@@ -1,0 +1,24 @@
+/* index.css or CodeBlock.css */
+.code-container {
+  width: 100%;
+  max-width: 800px;     /* optional, for readability */
+  margin: 1rem auto;    /* center on page with spacing */
+  padding: 1rem;
+  background-color: #2d2d2d; /* fallback if Prism style has transparency */
+  border-radius: 8px;
+  overflow-x: auto;     /* allow horizontal scroll for long lines */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+}
+
+/* Optional: make Prism code block text wrap nicely on small screens */
+.code-container pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Optional: style line numbers if you enable them later */
+.code-container .react-syntax-highlighter-line-number {
+  color: #999;
+  user-select: none;
+}

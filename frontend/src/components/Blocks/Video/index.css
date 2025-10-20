@@ -1,0 +1,6 @@
+.video-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 1rem auto;
+  height: 400px; /* make sure this is not 0 */
+}

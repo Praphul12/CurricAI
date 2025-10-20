@@ -1,0 +1,18 @@
+/* HeadingBlock.css or in your global index.css */
+h3 {
+  font-size: 1.5rem;      /* adjust size as needed */
+  font-weight: 600;       /* semi-bold */
+  margin: 1.5rem 0 0.75rem 0; /* top & bottom spacing */
+  color: #01161e;         /* matches your theme text-primary */
+  line-height: 1.3;
+
+  border-bottom: 2px solid #aec3b0; /* theme accent color */
+  padding-bottom: 0.25rem;
+}
+
+
+@media (max-width: 600px) {
+  h3 {
+    font-size: 1.3rem;
+  }
+}

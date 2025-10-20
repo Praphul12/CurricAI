@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ParagraphBlock = (para) => {
+const ParagraphBlock = ({text}) => {
   return (
-    <p>{para}</p>
+    <p>{text}</p>
   )
 }
 

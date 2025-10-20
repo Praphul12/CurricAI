@@ -1,11 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
-import {Navigate} from 'react-router-dom'
+// import {Navigate} from 'react-router-dom'
 import Topbar from "../Topbar";
+import Lesson from "../LessonRenderer";
 
 
 const Home = () => {
-    const {logout,isAuthenticated,user,getAccessTokenSilently} = useAuth0();
+    const {isAuthenticated,getAccessTokenSilently} = useAuth0();
     useEffect(()=>{
         
         const sendToken = async()=>{
@@ -44,6 +45,7 @@ const Home = () => {
     
     <div> 
         {isAuthenticated && <Topbar/>}
+        <Lesson/>
     </div>
   )
 }

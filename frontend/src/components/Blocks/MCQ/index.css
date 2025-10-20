@@ -1,0 +1,69 @@
+.mcq-container {
+  background: #eff6e0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.mcq-question {
+  color: #01161e;
+  margin-bottom: 1rem;
+}
+
+.mcq-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  margin: 0.4rem 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #aec3b0;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.option:hover {
+  background-color: #598392;
+}
+
+.option.selected {
+  background-color: #598392;
+}
+
+.option.correct {
+  background-color: #4caf50; /* green */
+}
+
+.option.wrong {
+  background-color: #e74c3c; /* red */
+}
+
+.submit-btn {
+  background-color: #124559;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.submit-btn:hover {
+  background-color: #598392;
+}
+
+.feedback {
+  color: #01161e;
+  margin-top: 1rem;
+  font-weight: 500;
+}

@@ -1,11 +1,11 @@
 import React from 'react'
 import {Prism} from 'react-syntax-highlighter'
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import './index.css';
 
-
-const CodeBlock = (language,code) => {
+const CodeBlock = ({language,code}) => {
   return (
-    <div>
+    <div className='code-container'>
         <Prism language= {language} style={tomorrow}>
             {code}
         </Prism>
