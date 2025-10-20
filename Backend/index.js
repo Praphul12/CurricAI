@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import {auth} from 'express-oauth2-jwt-bearer'
 import { authorize } from './Middlewares/authentication.js';
+import { connectToDb } from './db.js';
 dotenv.config();
 const app = express();
 const port = 5000 || process.env.PORT;
@@ -16,6 +17,7 @@ const port = 5000 || process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
+connectToDb();
 app.get("/api",authorize,(req,res) =>{
     console.log(req.auth);
     res.json({message : "backend is running and authenticated"})

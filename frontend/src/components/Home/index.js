@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import {Navigate} from 'react-router-dom'
+import Topbar from "../Topbar";
 
 
 const Home = () => {
@@ -41,13 +42,8 @@ const Home = () => {
     },[getAccessTokenSilently])
   return (
     
-    <div>
-        {/* <h2>Welcome {user.name?user.name: "User"}</h2>
-        <img src = {user.picture} alt = {user.name}/> */}
-        {isAuthenticated && <button onClick={() => logout()}>
-            Logout
-            </button>
-        }
+    <div> 
+        {isAuthenticated && <Topbar/>}
     </div>
   )
 }
