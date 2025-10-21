@@ -11,7 +11,7 @@ const Topbar = () => {
 
       {user && (
         <div className="topbar__profile">
-          <img src={user.picture} alt={user.name} className="topbar__avatar" />
+          <img src={user.picture} alt={user.name} referrerPolicy="no-referrer" className="topbar__avatar" />
           <span className="topbar__name">{user.name}</span>
           <button
             className="topbar__logout"
