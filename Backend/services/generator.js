@@ -64,7 +64,7 @@ export const lessonGenerator = async (course,module,lesson) => {
     return data;
 
   } catch (err) {
-    console.error("Error generating course:", err);
+    console.error("Error generating lesson:", err);
   }
 };
 

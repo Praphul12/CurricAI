@@ -20,9 +20,10 @@ app.use(express.json());
 
 connectToDb();
 
-app.get("/api/generateCourse", async (req, res) => {
+app.post("/api/generateCourse", async (req, res) => {
   try {
-    const topic = req.query.topic || "Introduction to APIS"; // optional query param
+    const topic = req.body.prompt ; 
+    // optional query param
     const course = await courseGenerator(topic);
     res.status(200).json(course);
   } catch (err) {
@@ -31,10 +32,13 @@ app.get("/api/generateCourse", async (req, res) => {
   }
 });
 
-app.get("/api/generateLesson", async (req, res) => {
+app.post("/api/generateLesson", async (req, res) => {
   try {
+    const courseTitle = req.body.course;
+    const lessonTitle = req.body.lesson;
+    const moduleTitle = req.body.module;
     // const topic = req.query.topic || "Introduction to APIS"; // optional query param
-    const lesson = await lessonGenerator("AI Basics","Intro","What is AI?");
+    const lesson = await lessonGenerator(courseTitle,moduleTitle,lessonTitle);
     res.status(200).json(lesson);
     
   } catch (err) {

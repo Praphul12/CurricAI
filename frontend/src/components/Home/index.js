@@ -1,53 +1,61 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-// import {Navigate} from 'react-router-dom'
+import { useState } from "react";
 import Topbar from "../Topbar";
-import Lesson from "../LessonRenderer";
-
+import Course from "../Course";
+import "./index.css";
 
 const Home = () => {
-    const {isAuthenticated,getAccessTokenSilently} = useAuth0();
-    useEffect(()=>{
-        
-        const sendToken = async()=>{
-            try{
-                const token = await getAccessTokenSilently();
-                console.log(token);
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const [prompt, setPrompt] = useState("");
+  const [course, setCourse] = useState(null);
 
-                const options = {
-                    method: "GET",
-                    headers: {
-                        "Content-type":"application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    // body: JSON.stringify({message: "From frontend"})
-                }
-                const res = await fetch("http://localhost:5000/api",options);
-                if(res.ok){
-                    const data = await res.json();
-                    console.log(data);
-                
-                }
-                else {
-                console.error("Unauthorized ",res.status);
-                return;
-                }
+  const handlePrompt = (event) => setPrompt(event.target.value);
 
-                
-            }catch(err){
-                console.log(err);
-            }
-          }
-          sendToken();
-          
-    },[getAccessTokenSilently])
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = await getAccessTokenSilently();
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ prompt }),
+      };
+
+      const res = await fetch("http://localhost:5000/api/generateCourse", options);
+      if (res.ok) {
+        const data = await res.json();
+        setCourse(data);
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    
-    <div> 
-        {isAuthenticated && <Topbar/>}
-        <Lesson/>
-    </div>
-  )
-}
+    <div className="home-container">
+      {isAuthenticated && <Topbar className="topbar" />}
+      <div className="course-wrapper">
+        <Course data={course} />
+      </div>
 
-export default Home
+      <form className="chat-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="chat-input"
+          value={prompt}
+          onChange={handlePrompt}
+          placeholder="Enter your course description"
+        />
+        <button type="submit" className="chat-button">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Home;

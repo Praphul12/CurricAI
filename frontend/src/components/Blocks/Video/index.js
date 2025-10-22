@@ -11,7 +11,7 @@ const VideoBlock = ({url}) => {
         width= "100%"
         height="100%"
         playing = {false}
-        pip = {true}
+        // pip = {true}
         />
     </div>
   )

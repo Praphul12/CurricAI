@@ -1,14 +1,17 @@
+/* index.css for MCQBlock - Dark theme */
+
 .mcq-container {
-  background: #eff6e0;
+  background-color: #1f2a30; /* dark but slightly lighter than page background */
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   margin-bottom: 1.5rem;
 }
 
 .mcq-question {
-  color: #01161e;
+  color: #eff6e0; /* light text for dark bg */
   margin-bottom: 1rem;
+  font-weight: 500;
 }
 
 .mcq-options {
@@ -24,32 +27,34 @@
   margin: 0.4rem 0;
   border: none;
   border-radius: 8px;
-  background-color: #aec3b0;
-  color: white;
+  background-color: #2d3a42; /* dark option bg */
+  color: #eff6e0; /* light text */
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 1rem;
 }
 
 .option:hover {
-  background-color: #598392;
+  background-color: #3a4a55; /* slightly lighter on hover */
 }
 
 .option.selected {
-  background-color: #598392;
+  background-color: #4b6572; /* highlight selected */
 }
 
 .option.correct {
-  background-color: #4caf50; /* green */
+  background-color: #4caf50; /* green for correct */
+  color: white;
 }
 
 .option.wrong {
-  background-color: #e74c3c; /* red */
+  background-color: #e74c3c; /* red for wrong */
+  color: white;
 }
 
 .submit-btn {
-  background-color: #124559;
-  color: white;
+  background-color: #598392;
+  color: #eff6e0;
   border: none;
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
@@ -59,11 +64,11 @@
 }
 
 .submit-btn:hover {
-  background-color: #598392;
+  background-color: #124559;
 }
 
 .feedback {
-  color: #01161e;
+  color: #aec3b0; /* lighter feedback text */
   margin-top: 1rem;
   font-weight: 500;
 }

@@ -1,0 +1,55 @@
+/* ---------- Lesson Page Container ---------- */
+.lesson-container {
+    background-color: #0f111a; /* dark background */
+    color: #e0e6f0; /* main text color */
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ---------- Loading Text ---------- */
+.lesson-loading {
+    color: #a5adba; /* muted gray for loading */
+    font-size: 1.2rem;
+}
+
+/* ---------- Form Input ---------- */
+.lesson-container form input[type="text"] {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #303446;
+    border-radius: 8px;
+    background-color: #1a1f2b;
+    color: #e0e6f0;
+    font-size: 1rem;
+}
+
+.lesson-container form input[type="text"]::placeholder {
+    color: #a5adba;
+}
+
+/* ---------- Form Button ---------- */
+.lesson-container form button {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #5fb3ff; /* accent color */
+    color: #0f111a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lesson-container form button:hover {
+    background-color: #3a8ddd;
+}
+
+/* ---------- Scrollbars for JSON / overflow elements ---------- */
+.lesson-container pre {
+    background-color: #1a1f2b;
+    padding: 1rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: 'Fira Code', monospace;
+}
