@@ -15,6 +15,7 @@ const Home = () => {
     e.preventDefault();
     try {
       const token = await getAccessTokenSilently();
+      
       const options = {
         method: "POST",
         headers: {

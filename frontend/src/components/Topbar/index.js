@@ -4,7 +4,7 @@ import "./index.css";
 
 const Topbar = () => {
   const { user, logout } = useAuth0();
-
+  console.log(user);
   return (
     <header className="topbar">
       <h1 className="topbar__logo">CurricAI</h1>

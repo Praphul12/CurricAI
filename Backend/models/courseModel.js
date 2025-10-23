@@ -5,7 +5,7 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    desciption: String,
+    description: String,
     creator : {
         type: String,
         required: true
@@ -21,10 +21,43 @@ const courseSchema = new mongoose.Schema({
     tags : [
         {
             type: String,
-            trime: true
+            trim: true
         }
     ]
 }, {timestamps: true});
 
+
+courseSchema.statics.saveCourse = async function (id,title,description,tags,modules) {
+    
+    try {
+        
+    
+        const course = new this({
+          
+            title,
+            description,
+            creator: id,
+            tags
+        });
+    
+        const newCourse = await course.save();
+        return newCourse;
+        
+    } catch (error) {
+        throw new Error('Error creating course '+ error.message);
+    }
+
+}
+
+courseSchema.statics.getUserCourses = async function (userId) {
+    
+    try {
+        const courses = await this.find({creator: userId});
+        return courses;
+        
+    } catch (error) {
+        throw new Error("unable to fetch Courses "+ error.message);
+    }
+}
 
 export const Course = mongoose.model('Course',courseSchema);

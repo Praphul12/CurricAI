@@ -7,45 +7,28 @@ import { authorize } from './Middlewares/authentication.js';
 import { connectToDb } from './db.js';
 import {courseGenerator,lessonGenerator} from './services/generator.js';
 const app = express();
+import courseRoutes from './Routes/courseRoutes.js'
+
+// import lessonRoutes from './Routes/lessonRoutes.js';
 const port = 5000 || process.env.PORT;
 
 //JWT validation middleware
 
-// const checkJWT = auth({
-//     audience:process.env.AUTH0_AUDIENCE,
-//     issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`
-// })
+const checkJWT = auth({
+            audience:process.env.AUTH0_AUDIENCE,
+            issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`
+        });
 app.use(cors());
+
 app.use(express.json());
 
 connectToDb();
 
-app.post("/api/generateCourse", async (req, res) => {
-  try {
-    const topic = req.body.prompt ; 
-    // optional query param
-    const course = await courseGenerator(topic);
-    res.status(200).json(course);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to generate course" });
-  }
-});
+app.use("/api/course",courseRoutes);
+// app.use("/api/lesson",lessonRoutes);
 
-app.post("/api/generateLesson", async (req, res) => {
-  try {
-    const courseTitle = req.body.course;
-    const lessonTitle = req.body.lesson;
-    const moduleTitle = req.body.module;
-    // const topic = req.query.topic || "Introduction to APIS"; // optional query param
-    const lesson = await lessonGenerator(courseTitle,moduleTitle,lessonTitle);
-    res.status(200).json(lesson);
-    
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to generate course" });
-  }
-});
+
+
 
 
 app.listen(port,()=>console.log(`server running on port ${port}`))

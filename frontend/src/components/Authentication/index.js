@@ -11,8 +11,8 @@ const Authentication = () => {
   return (
     <div className="LoginContainer">
       <div className="LoginCard">
-        <img src={logo} alt="CurriAI Logo" className="AppLogo" />
-        <h1 className="AppTitle">CurriAI</h1>
+        <img src={logo} alt="CurricAI Logo" className="AppLogo" />
+        <h1 className="AppTitle">CurricAI</h1>
         <p className="AppSubtitle">Generate structured courses from your ideas.</p>
         <button className="LoginButton" onClick={()=> {loginWithRedirect()}}>
           <FcGoogle size={20} />
