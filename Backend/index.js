@@ -24,7 +24,7 @@ app.use(express.json());
 
 connectToDb();
 
-app.use("/api/course",courseRoutes);
+app.use("/api/course",checkJWT,courseRoutes);
 // app.use("/api/lesson",lessonRoutes);
 
 
