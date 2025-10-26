@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose, { Error, mongo } from "mongoose";
 
 
 const moduleSchema = new mongoose.Schema({
@@ -49,5 +49,16 @@ moduleSchema.statics.saveModule = async function (courseId,modules) {
     }
     
 }
+
+moduleSchema.statics.getModules =  async function({courseId}){
+    try {
+        
+        const modules = await this.find({course:courseId}).populate('lessons');
+        return modules;
+    } catch (error) {
+        throw new Error("Unable to fetch modules" + error.message);
+    }
+}
+
 export const Module = mongoose.model('Module',moduleSchema);
 

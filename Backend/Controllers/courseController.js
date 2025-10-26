@@ -22,8 +22,13 @@ export const createCourse = async(req,res)=>{
         //Save the modules 
         const [lessons,moduleIds] = await Module.saveModule(course._id,parsedContent.modules);
         //Now each module has lessons to it so save them together using insertMany
-        await Lesson.insertMany(lessons);
+        const insertedLessons = await Lesson.insertMany(lessons);
 
+        for(const mId of moduleIds){
+            const lesonWithMId = await Lesson.find({module: mId}).distinct('_id');
+            await Module.findByIdAndUpdate(mId,{lessons: lesonWithMId});
+
+        }
         //Finally update the moduleIds in the course 
         const updatedCourse = await Course.findByIdAndUpdate(course._id,{modules: moduleIds},{new: true});
         res.status(200).json({updatedCourse});

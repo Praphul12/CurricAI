@@ -3,12 +3,20 @@ import { useState } from "react";
 import Topbar from "../Topbar";
 import Sidebar from "../Sidebar";
 import "./index.css";
+import Course from "../Course";
 
-const Home = () => {
+const Home = ({handleTheme}) => {
+
   const { getAccessTokenSilently } = useAuth0();
   const [prompt, setPrompt] = useState("");
   const [course, setCourse] = useState(null);
+  const [sidebarState, setSidebarState] = useState(1);
+  const [selectedCourseModules,setSelectedCourseModules] = useState(null);
 
+  console.log(sidebarState);
+  const handleSidebarState = ()=>{
+    setSidebarState(!sidebarState);
+  }
   const handlePrompt = (e) => setPrompt(e.target.value);
 
   const handleSubmit = async (e) => {
@@ -33,29 +41,41 @@ const Home = () => {
   };
 
   return (
-    <div className="home-container">
-  <Sidebar /> {/* full-height left panel */}
-
- <div className="main-content-wrapper">
-  <div className="main-content">
-    <div className="messages-container">
-      {/* Your generated course/messages go here */}
+    <div className="Home-container">
+   
+        <div className="topbar-container">
+            <Topbar
+             changeTheme = {handleTheme}
+             handleSidebarState = {handleSidebarState}
+            />
+        </div>
+       <div className="main-content">
+        <div className="Sidebar-container">
+            <Sidebar 
+             setSelectedCourseModules={setSelectedCourseModules}
+             selectedCourseModules = {selectedCourseModules} 
+             sidebarState = {sidebarState}
+            />
+        </div>
+      <div className="Course-chat">
+        <div className="Course-container">
+            <Course course={selectedCourseModules}/>
+        </div>
+        <div className="Chat-container">
+          <form className="chat-form" onSubmit={handleSubmit}>
+            <input
+                type="text"
+                className="chat-input"
+                value={prompt}
+                onChange={handlePrompt}
+                placeholder="Enter your course description"
+              />
+            <button type="submit" className="chat-button">Submit</button>
+          </form>
+        </div>
+        </div>
+      </div>
     </div>
-    <form className="chat-form" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        className="chat-input"
-        value={prompt}
-        onChange={handlePrompt}
-        placeholder="Enter your course description"
-      />
-      <button type="submit" className="chat-button">Submit</button>
-    </form>
-  </div>
-</div>
-
-</div>
-
   );
 };
 

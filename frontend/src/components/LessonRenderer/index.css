@@ -45,11 +45,3 @@
     background-color: #3a8ddd;
 }
 
-/* ---------- Scrollbars for JSON / overflow elements ---------- */
-.lesson-container pre {
-    background-color: #1a1f2b;
-    padding: 1rem;
-    border-radius: 10px;
-    overflow-x: auto;
-    font-family: 'Fira Code', monospace;
-}

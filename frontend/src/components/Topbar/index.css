@@ -1,0 +1,41 @@
+.Topbar{
+  display: flex;
+  /* border: 1px solid var(--text-primary); */
+  /* border-radius: 10%; */
+   height: 50px;
+   box-shadow: 0 4px 10px var(--bg-shadow);
+   border-radius: 10px;
+   position: sticky;
+  width: 100%;
+  
+}
+
+.HamMenu{
+  /* align-self: center; */
+  /* padding: 10px; */
+  margin: 10px;
+  height: 30px;
+  width: 30px;
+  align-items: center;
+  align-content: center;
+  /* padding-left: 4px; */
+  border-radius: 4px;
+  background: none;
+  color: var(--text-primary);
+  border: none;
+  
+}
+
+.HamMenu:hover{
+   box-shadow: 0 4px 4px var(--bg-shadow);
+   cursor: pointer;
+}
+
+.SiteName h1{
+  color: var(--text-primary);
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 30px;
+
+}

@@ -1,87 +1,37 @@
 /* Container for whole page */
-.home-container {
-  display: flex;
-  height: 100vh; /* full viewport */
-  font-family: Arial, sans-serif;
-  background-color: #01161e;
-  color: #eff6e0;
-  overflow: hidden;
-}
-
-/* Main content wrapper (to the right of sidebar) */
-.main-content-wrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center; /* center horizontally */
-  padding: 20px;
-  overflow: hidden; /* avoid extra scroll */
-}
-
-/* Inner main content (chat + course) */
-.main-content {
+.Home-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 900px;
-  height: 100%; /* full height of wrapper */
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-light);
+
 }
-.topbar {
-  height: 60px;
+.topbar-container{
+  flex-grow: 1;
+  max-height: 52px;
+  /* flex-basis: 100%; */
+}
+.main-content {
   display: flex;
-  align-items: center;
-  padding: 0 20px;
-  background-color: #124559;
-  color: #eff6e0;
-  font-size: 24px;
-  font-weight: bold;
-  border-radius: 12px 12px 0 0;
+  /* flex-direction: column;   stack course on top, chat on bottom */
+  flex: 1;                  /* take remaining space next to sidebar */
+  min-width: 0;             /* allow content to shrink without overflowing */
 }
-/* Chat form at bottom */
-.chat-form {
+
+
+.Course-chat{
   display: flex;
-  gap: 10px;
-  padding: 10px;
-  background-color: #124559;
-  border-radius: 12px;
-}
-.chat-input {
+  flex-direction: column;
   flex: 1;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  bottom: 20px;
-  font-size: 16px;
-  background-color: #01161e;
-  color: #eff6e0;
-}
-.messages-container {
-  flex: 1;             /* take all available space above input */
-  overflow-y: auto;    /* scroll if content overflows */
-  padding-bottom: 10px;
+  height: 90vh;
+  width: 30vw;
+  /* justify-content: space-around; */
 }
 
-.chat-button {
-  background-color: #598392;
-  color: #eff6e0;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.Course-container{
+  height: 90%;
 }
 
-.chat-button:hover {
-  background-color: #124559;
-}
 
-/* Mobile: stack sidebar on top */
-@media (max-width: 768px) {
-  .home-container {
-    flex-direction: column;
-  }
-  .main-content-wrapper {
-    justify-content: flex-start;
-    padding: 10px;
-  }
-}
+
