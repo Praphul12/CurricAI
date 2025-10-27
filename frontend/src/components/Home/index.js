@@ -4,7 +4,7 @@ import Topbar from "../Topbar";
 import Sidebar from "../Sidebar";
 import "./index.css";
 import Course from "../Course";
-
+import { IoSend } from "react-icons/io5";
 const Home = ({handleTheme}) => {
 
   const { getAccessTokenSilently } = useAuth0();
@@ -70,7 +70,7 @@ const Home = ({handleTheme}) => {
                 onChange={handlePrompt}
                 placeholder="Enter your course description"
               />
-            <button type="submit" className="chat-button">Submit</button>
+            <button type="submit" className="chat-button"><IoSend size={24}/></button>
           </form>
         </div>
         </div>

@@ -6,26 +6,70 @@
 
 
 .course-modules{
+  display: flex;
+  flex-direction: column;
   padding: 10%;
-  padding-top: 5%
-  
+  padding-top: 5%;
+  /* border: 10px solid white; */
+ 
 }
 
 .module-container{
-  height: 10vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  /* border: 1px solid white; */
+  
+  padding: 5px;
 }
 
 .btn-module{
-    align-content: center;
-    width: 70%;
-    height: 70%;
+    /* align-content: start; */
+    text-align: left ;
+    width: 100%;
+    height: 9vh;
     border-radius: 15px;
     font-size: large;
     background-color: var(--bg-buttons);
     color: var(--text-primary);
     border: 1;
-    box-shadow: 0 4px 10px var(--bg-shadow);
+    box-shadow: 0 4px 20px var(--bg-shadow);
+    /* margin: 3px; */
+    border-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
+.btn-module:hover{
+  background: linear-gradient(
+    145deg,
+    var(--bg-hover) 0%,
+    #444444 100%
+  );
+      cursor: pointer;
+}
+.btn-lesson-title{
+    height: 5vh;
+    background-color: var(--bg-buttons);
+    /* margin: 2px; */
+    margin: 0;
+    color: var(--text-primary);;
+    border-radius: 10px;
+}
+
+.btn-lesson-title:hover{
+      background-color: var(--bg-hover);
+      cursor: pointer;
+}
+.course-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 9vh;
+  /* background-color: aqua; */
+  border-radius: 15px;
+  border-right: 1px solid white;
+
+  
+  }

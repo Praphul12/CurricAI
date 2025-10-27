@@ -34,4 +34,22 @@
 }
 
 
+.chat-form{
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+}
 
+.chat-input{
+  width: 50vw;
+  background-color: var(--bg-hover);
+  height: 70%;
+  border-radius: 30px;
+}
+
+.chat-button{
+  background: none;
+  border: 0px;
+  margin: 1%;
+  color: var(--text-primary);
+}
