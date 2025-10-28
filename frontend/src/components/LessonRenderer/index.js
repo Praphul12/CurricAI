@@ -9,11 +9,16 @@ import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Lesson = () => {
-    
+    const [lessonData,setLessonData] = useState(null);
     const {state} = useLocation();
-    const lessonData = state?.lesson;
+    // setLessonData(state?.lesson);
     const navigate = useNavigate();
-    console.log(lessonData);
+    // console.log(lessonData);
+    useEffect(() => {
+    if (state?.lesson) {
+      setLessonData(state.lesson);
+    }
+  }, [state]);
 
     if(!lessonData) return <p className="lesson-loading">Loading lesson...</p>
 

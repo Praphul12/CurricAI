@@ -37,7 +37,7 @@ export const courseGenerator = async (topic) => {
 
 export const lessonGenerator = async (course,module,lesson) => {
     try {
-    console.log(process.env.OPEN_ROUTER_API);
+    // console.log(process.env.OPEN_ROUTER_API);
     const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: "POST",
       headers: {

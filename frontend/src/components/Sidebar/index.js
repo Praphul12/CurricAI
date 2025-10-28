@@ -3,10 +3,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useState, useEffect } from 'react';
 import './index.css';
 import { IoLogOutOutline } from "react-icons/io5";
-const Sidebar = ({selectedCourseModules,setSelectedCourseModules,sidebarState,setSelectedCourse}) => {
+import {CourseContext} from "../../context/CourseContext.js" 
+import { useContext } from 'react';
+const Sidebar = () => {
+  const {setSelectedCourseModules,getUserCourses,sidebarState,setSelectedCourse,courses,setCourses,selectedCourseId,setSelectedCourseId} = useContext(CourseContext);
   const { getAccessTokenSilently, user, logout } = useAuth0(); 
-  const [courses, setCourses] =  useState(null); //Save the user courses
-  const [selectedCourseId,setSelectedCourseId] = useState(null);
+  // const [courses, setCourses] =  useState(null); //Save the user courses
+  // const [selectedCourseId,setSelectedCourseId] = useState(null);
 
 
   const handleCourseSelect = (course)=>{
@@ -35,27 +38,8 @@ const Sidebar = ({selectedCourseModules,setSelectedCourseModules,sidebarState,se
     getCourseModules();
   }
   useEffect(() => {
-    const getUserCourses = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-        const options = {
-          method: 'GET',
-          headers: {
-            'content-type': 'application/json',
-            authorization: `Bearer ${token}`
-          }
-        };
-       
-        const res = await fetch('http://localhost:5000/api/course/allCourse', options);
-        const data = await res.json();
-        setCourses(data.courses);
-        setSelectedCourseId(data?.courses[0]._id);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     getUserCourses();
-  }, [getAccessTokenSilently,setSelectedCourseId]);
+  }, [getUserCourses]);
 
   return (
 <div className={`sidebar-container ${sidebarState?"open":"collapse"}`}>
@@ -76,7 +60,7 @@ const Sidebar = ({selectedCourseModules,setSelectedCourseModules,sidebarState,se
 
   {user && (
     <div className="sidebar-bottom">
-      <img src={user.picture} alt={user.name} className="avatar" />
+      <img src={user.picture} alt={user.name} className="avatar" referrerPolicy='no-referrer'/>
       <div className="user-name">{user.name}</div>
       <button className="logout" onClick={logout}><IoLogOutOutline size={24}/></button>
     </div>

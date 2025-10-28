@@ -3,10 +3,12 @@ import "./index.css";
 import { FaPenAlt } from "react-icons/fa";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { useContext } from "react";
+import {CourseContext} from "../../context/CourseContext.js" 
 const Course = ({ course,selectedCourse }) => {
   const navigate = useNavigate();
-  const [openModuleIndex,setOpenModuleIndex] = useState(null);
+  const {openModuleIndex, setOpenModuleIndex} = useContext(CourseContext);
+  // const [openModuleIndex,setOpenModuleIndex] = useState(null);
   const {getAccessTokenSilently} = useAuth0();
   const handlemoduleSelect = (moduleIndex)=>{
     setOpenModuleIndex((prev)=>
@@ -15,35 +17,61 @@ const Course = ({ course,selectedCourse }) => {
   }
 
   const handleLessonSelect = async(lesson)=>{
- 
-    try {
-      const token = await getAccessTokenSilently();
 
-      const options = {
-        method: "POST",
-        headers:{
-          "content-type":"application/json",
-           authorization: `Bearer ${token}`
-        },
-        body:
-          JSON.stringify({
-            "courseTitle":selectedCourse?.title,
-            "moduleTitle": course?.modules[openModuleIndex].title,
-            "lessonTitle": lesson?.title
-        })
+    const token = await getAccessTokenSilently();
+    if(lesson.isEnriched === true){
+
+      try {
+        const options = {
+          method: "GET",
+          headers:{
+            "content-type": "application/json",
+            authorization : `Bearer ${token}`
+          }
+        }
+  
+        const res = await fetch(`http://localhost:5000/api/lesson/${lesson._id}`,options);
+        const data = await res.json();
+        const lessonData = data.lesson?.content?.[0]?.content;
+        navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
       }
+      catch (error) {
 
-      const res = await fetch(`http://localhost:5000/api/lesson/${lesson?._id}/generate`,options);
-      const data = await res.json();
-      const lessonData = data?.lesson.content[0]?.content;
-      navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
-      console.log(data);
-      
-    } catch (error) {
-        throw new Error("Unable to load lesson "+ error.message);
+           throw new Error("Unable to load lesson "+ error.message);
+
+      }
+        
+    }else{
+
+      try {
+        
+  
+        const options = {
+          method: "POST",
+          headers:{
+            "content-type":"application/json",
+             authorization: `Bearer ${token}`
+          },
+          body:
+            JSON.stringify({
+              "courseTitle":selectedCourse?.title,
+              "moduleTitle": course?.modules[openModuleIndex].title,
+              "lessonTitle": lesson?.title
+          })
+        }
+  
+        const res = await fetch(`http://localhost:5000/api/lesson/${lesson?._id}/generate`,options);
+        const data = await res.json();
+        console.log(data);
+        const lessonData = data.lesson?.content?.[0]?.content;
+        navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
+        
+      } catch (error) {
+          throw new Error("Unable to load lesson "+ error.message);
+      }
     }
-  }
- console.log(course);
+  } 
+//  console.log(course);
   return(
     course && course.modules.length > 0 ? (
       <div className="course">

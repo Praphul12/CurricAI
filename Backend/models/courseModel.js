@@ -52,7 +52,7 @@ courseSchema.statics.saveCourse = async function (id,title,description,tags,modu
 courseSchema.statics.getUserCourses = async function (userId) {
     
     try {
-        const courses = await this.find({creator: userId},);
+        const courses = await this.find({creator: userId}).sort({createdAt: -1}).exec();
         return courses;
         
     } catch (error) {

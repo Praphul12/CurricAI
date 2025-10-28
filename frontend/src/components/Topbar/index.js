@@ -1,8 +1,12 @@
 import "./index.css";
 import { GiHamburgerMenu } from "react-icons/gi";
-const Topbar = ({changeTheme,handleSidebarState}) => {
+import {CourseContext} from "../../context/CourseContext.js" 
+import { useContext } from "react";
 
 
+const Topbar = () => {
+
+  const {handleSidebarState} = useContext(CourseContext);
   return (
     <header className="Topbar">
     <button className="HamMenu" onClick={handleSidebarState}>

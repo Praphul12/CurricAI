@@ -5,14 +5,17 @@ import Sidebar from "../Sidebar";
 import "./index.css";
 import Course from "../Course";
 import { IoSend } from "react-icons/io5";
+import {CourseContext} from "../../context/CourseContext.js" 
+import { useContext } from "react";
 const Home = ({handleTheme}) => {
 
   const { getAccessTokenSilently } = useAuth0();
   const [prompt, setPrompt] = useState("");
+  const {selectedCourse,getUserCourses,setSelectedCourse,sidebarState,setSidebarState,selectedCourseModules,setSelectedCourseModules} = useContext(CourseContext);
 
-  const [selectedCourse,setSelectedCourse] = useState(null);
-  const [sidebarState, setSidebarState] = useState(1);
-  const [selectedCourseModules,setSelectedCourseModules] = useState(null);
+  // const [selectedCourse,setSelectedCourse] = useState(null);
+  // const [sidebarState, setSidebarState] = useState(1);
+  // const [selectedCourseModules,setSelectedCourseModules] = useState(null);
 
   console.log(sidebarState);
   const handleSidebarState = ()=>{
@@ -20,33 +23,33 @@ const Home = ({handleTheme}) => {
   }
   const handlePrompt = (e) => setPrompt(e.target.value);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const token = await getAccessTokenSilently();
-  //     const res = await fetch("http://localhost:5000/api/generateCourse", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({ prompt }),
-  //     });
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setCourse(data);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = await getAccessTokenSilently();
+      const res = await fetch("http://localhost:5000/api/course/create", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ prompt }),
+      });
+      if (res.ok) {
+        await res.json();
+        await getUserCourses();
+        setPrompt("");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="Home-container">
    
         <div className="topbar-container">
             <Topbar
-             changeTheme = {handleTheme}
              handleSidebarState = {handleSidebarState}
             />
         </div>
@@ -68,7 +71,7 @@ const Home = ({handleTheme}) => {
              />
         </div>
         <div className="Chat-container">
-          <form className="chat-form" > 
+          <form className="chat-form" onSubmit={handleSubmit}> 
             <input
                 type="text"
                 className="chat-input"
@@ -76,7 +79,7 @@ const Home = ({handleTheme}) => {
                 onChange={handlePrompt}
                 placeholder="Enter your course description"
               />
-            <button type="submit" className="chat-button"><IoSend size={24}/></button>
+            <button  type="submit" className="chat-button"><IoSend size={24}/></button>
           </form>
         </div>
         </div>
