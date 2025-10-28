@@ -25,7 +25,7 @@ function App() {
         <Route path='/login' element = {<Authentication/>}/>
         <Route path='/home' element = {<ProtectedRoute component={<Home handleTheme = {handleTheme}/>}/>}/>
         
-        <Route path='/lesson/:courseTitle/:moduleTitle/:lessonTitle' element = {<ProtectedRoute component={<Lesson/>}/>}/>
+        <Route path='/lesson/:lessonId' element = {<ProtectedRoute component={<Lesson/>}/>}/>
         <Route path='*' element = {<div>page not found</div>}/>
         
       </Routes>

@@ -9,7 +9,8 @@ const Home = ({handleTheme}) => {
 
   const { getAccessTokenSilently } = useAuth0();
   const [prompt, setPrompt] = useState("");
-  const [course, setCourse] = useState(null);
+
+  const [selectedCourse,setSelectedCourse] = useState(null);
   const [sidebarState, setSidebarState] = useState(1);
   const [selectedCourseModules,setSelectedCourseModules] = useState(null);
 
@@ -19,26 +20,26 @@ const Home = ({handleTheme}) => {
   }
   const handlePrompt = (e) => setPrompt(e.target.value);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const token = await getAccessTokenSilently();
-      const res = await fetch("http://localhost:5000/api/generateCourse", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ prompt }),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setCourse(data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const token = await getAccessTokenSilently();
+  //     const res = await fetch("http://localhost:5000/api/generateCourse", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({ prompt }),
+  //     });
+  //     if (res.ok) {
+  //       const data = await res.json();
+  //       setCourse(data);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <div className="Home-container">
@@ -55,14 +56,19 @@ const Home = ({handleTheme}) => {
              setSelectedCourseModules={setSelectedCourseModules}
              selectedCourseModules = {selectedCourseModules} 
              sidebarState = {sidebarState}
+             setSelectedCourse = {setSelectedCourse}
             />
         </div>
       <div className="Course-chat">
         <div className="Course-container">
-            <Course course={selectedCourseModules}/>
+            <Course 
+             course={selectedCourseModules}
+             selectedCourse = {selectedCourse}
+
+             />
         </div>
         <div className="Chat-container">
-          <form className="chat-form" onSubmit={handleSubmit}>
+          <form className="chat-form" > 
             <input
                 type="text"
                 className="chat-input"

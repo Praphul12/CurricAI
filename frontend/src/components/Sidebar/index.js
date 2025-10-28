@@ -3,13 +3,15 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useState, useEffect } from 'react';
 import './index.css';
 import { IoLogOutOutline } from "react-icons/io5";
-const Sidebar = ({selectedCourseModules,setSelectedCourseModules,sidebarState}) => {
+const Sidebar = ({selectedCourseModules,setSelectedCourseModules,sidebarState,setSelectedCourse}) => {
   const { getAccessTokenSilently, user, logout } = useAuth0(); 
   const [courses, setCourses] =  useState(null); //Save the user courses
   const [selectedCourseId,setSelectedCourseId] = useState(null);
 
+
   const handleCourseSelect = (course)=>{
     setSelectedCourseId(course._id);
+    setSelectedCourse(course);
     const getCourseModules = async()=>{
       try {
         const token = await getAccessTokenSilently();

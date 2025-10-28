@@ -19,4 +19,13 @@ const lessonSchema = new mongoose.Schema({
     }
 })
 
+
+lessonSchema.statics.getLesson = async function (lessonId) {
+    try {
+        const lessonData = this.findById(lessonId);
+        return lessonData;
+    } catch (error) {
+        return error;
+    }
+}
 export const Lesson = mongoose.model('Lesson',lessonSchema); 

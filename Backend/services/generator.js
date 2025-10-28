@@ -59,9 +59,9 @@ export const lessonGenerator = async (course,module,lesson) => {
       })
     });
 
-    const data = await res.json();
-    // console.log(data);
-    return data;
+    const rawData = await res.json();
+    const content = rawData?.choices[0]?.message?.content;
+    return content;
 
   } catch (err) {
     console.error("Error generating lesson:", err);

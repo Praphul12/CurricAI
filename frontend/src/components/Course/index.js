@@ -2,14 +2,46 @@ import React, { useState } from "react";
 import "./index.css";
 import { FaPenAlt } from "react-icons/fa";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const Course = ({ course }) => {
+const Course = ({ course,selectedCourse }) => {
+  const navigate = useNavigate();
   const [openModuleIndex,setOpenModuleIndex] = useState(null);
-
+  const {getAccessTokenSilently} = useAuth0();
   const handlemoduleSelect = (moduleIndex)=>{
     setOpenModuleIndex((prev)=>
       prev === moduleIndex? null :moduleIndex
     );
+  }
+
+  const handleLessonSelect = async(lesson)=>{
+ 
+    try {
+      const token = await getAccessTokenSilently();
+
+      const options = {
+        method: "POST",
+        headers:{
+          "content-type":"application/json",
+           authorization: `Bearer ${token}`
+        },
+        body:
+          JSON.stringify({
+            "courseTitle":selectedCourse?.title,
+            "moduleTitle": course?.modules[openModuleIndex].title,
+            "lessonTitle": lesson?.title
+        })
+      }
+
+      const res = await fetch(`http://localhost:5000/api/lesson/${lesson?._id}/generate`,options);
+      const data = await res.json();
+      const lessonData = data?.lesson.content[0]?.content;
+      navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
+      console.log(data);
+      
+    } catch (error) {
+        throw new Error("Unable to load lesson "+ error.message);
+    }
   }
  console.log(course);
   return(
@@ -23,9 +55,9 @@ const Course = ({ course }) => {
                     <span className="course-logo" ><FaPenAlt size={30}/></span> Module {index+1}: {module.title}
                   </button>
                 
-                    {openModuleIndex && openModuleIndex === index &&(
+                    {openModuleIndex!= null && openModuleIndex === index &&(
                         module.lessons.map((lesson,index)=>(
-                          <button key= {index} className="btn-lesson-title">{lesson.title}</button>
+                          <button key= {index} onClick={()=>handleLessonSelect(lesson)} className="btn-lesson-title">{lesson.title}</button>
                         
                         ))
                        

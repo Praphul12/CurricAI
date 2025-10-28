@@ -5,51 +5,22 @@ import CodeBlock from '../Blocks/Code';
 import VideoBlock from '../Blocks/Video';
 import MCQBlock from '../Blocks/MCQ';
 import './index.css'
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Lesson = () => {
-    const { courseTitle, moduleTitle, lessonTitle } = useParams();
-    const [lessonData,setLessonData] = useState(null);
-    const {getAccessTokenSilently} = useAuth0();
+    
+    const {state} = useLocation();
+    const lessonData = state?.lesson;
     const navigate = useNavigate();
-    useEffect(()=>{
-        const getLesson = async()=>{
-            try {
-                const token = await getAccessTokenSilently();
-                const options = {
-                    method: "POST",
-                    headers:{
-                        'Content-type': 'application/json',
-                        authorization: `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        course: courseTitle,
-                        module: moduleTitle,
-                        lesson: lessonTitle
-                    })
-                };
-                
-                const res = await fetch("http://localhost:5000/api/generateLesson",options);
-                if(res.ok){
-                    const data = await res.json();
-                    const rawData = data.choices[0].message.content;
-                    const lesson  = JSON.parse(rawData)
-                    setLessonData(lesson);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getLesson();
-    },[courseTitle,moduleTitle,lessonTitle,getAccessTokenSilently]);
+    console.log(lessonData);
 
     if(!lessonData) return <p className="lesson-loading">Loading lesson...</p>
 
     return (
         <div className="lesson-container">
             {/* <pre className="lesson-json">{JSON.stringify(lessonData, null, 2)}</pre> */}
-            {lessonData.content.map((block,index)=>{
+            {lessonData?.map((block,index)=>{
                 switch(block.type){
                     case "heading":
                         return <HeadingBlock key={index} text={block.text} className="heading-block"/>;
