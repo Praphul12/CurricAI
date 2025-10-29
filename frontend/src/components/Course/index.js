@@ -70,7 +70,7 @@ const Course = ({ course,selectedCourse }) => {
         navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
         lesson.isEnriched = true;
 
-
+      
         
       } catch (error) {
           throw new Error("Unable to load lesson "+ error.message);
