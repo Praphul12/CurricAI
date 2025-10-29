@@ -26,7 +26,6 @@ connectToDb();
 
 app.use("/api/course",courseRoutes);
 app.use("/api/modules",moduleRoutes);
-
 app.use("/api/lesson",lessonRoutes);
 
 // app.use("/api/lesson",lessonRoutes);

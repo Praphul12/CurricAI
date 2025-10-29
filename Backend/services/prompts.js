@@ -40,7 +40,7 @@ Return only valid JSON like this:
     { "type": "heading", "text": "..." },
     { "type": "paragraph", "text": "..." },
     { "type": "code", "language": "python", "text": "..." },
-    { "type": "video", "url": "search query" },
+    { "type": "video", "query": "youtube search query" },
     {
       "type": "mcq",
       "question": "...",

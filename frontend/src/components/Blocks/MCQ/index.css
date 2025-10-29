@@ -1,11 +1,18 @@
 /* index.css for MCQBlock - Dark theme */
 
 .mcq-container {
-  background-color: #1f2a30; /* dark but slightly lighter than page background */
+  background-color: var(--bg-light); /* dark but slightly lighter than page background */
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   margin-bottom: 1.5rem;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center; */
+  width: 60%;
+
+  
 }
 
 .mcq-question {
@@ -27,15 +34,15 @@
   margin: 0.4rem 0;
   border: none;
   border-radius: 8px;
-  background-color: #2d3a42; /* dark option bg */
-  color: #eff6e0; /* light text */
+  background-color: var(--bg-buttons); 
+  color: var(--text-primary); /* light text */
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 1rem;
 }
 
 .option:hover {
-  background-color: #3a4a55; /* slightly lighter on hover */
+  background-color: var(--bg-hover); /* slightly lighter on hover */
 }
 
 .option.selected {
@@ -64,7 +71,7 @@
 }
 
 .submit-btn:hover {
-  background-color: #124559;
+  background-color: var(--bg-hover);
 }
 
 .feedback {

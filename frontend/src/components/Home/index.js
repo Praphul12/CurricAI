@@ -17,7 +17,8 @@ const Home = ({handleTheme}) => {
   // const [sidebarState, setSidebarState] = useState(1);
   // const [selectedCourseModules,setSelectedCourseModules] = useState(null);
 
-  console.log(sidebarState);
+  // console.log(sidebarState);
+
   const handleSidebarState = ()=>{
     setSidebarState(!sidebarState);
   }
@@ -77,7 +78,7 @@ const Home = ({handleTheme}) => {
                 className="chat-input"
                 value={prompt}
                 onChange={handlePrompt}
-                placeholder="Enter your course description"
+                placeholder="  Enter your course description"
               />
             <button  type="submit" className="chat-button"><IoSend size={24}/></button>
           </form>

@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import ReactMarkdown from "react-markdown";
+import "./index.css";
 
-const ParagraphBlock = ({text}) => {
+const ParagraphBlock = ({ text }) => {
+
   return (
-    <p>{text}</p>
-  )
-}
+    <div className="para">
+      <ReactMarkdown>{text}</ReactMarkdown>
+    </div>
+  );
+};
 
-export default ParagraphBlock
+export default ParagraphBlock;

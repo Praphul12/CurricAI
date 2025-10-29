@@ -1,47 +1,29 @@
 /* ---------- Lesson Page Container ---------- */
 .lesson-container {
-    background-color: #0f111a; /* dark background */
+    background-color: var(--bg-light); /* dark background */
     color: #e0e6f0; /* main text color */
     min-height: 100vh;
-    padding: 2rem;
+    padding: 3rem;
     font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+ 
+    /* align-items: flex-start;  */
 }
 
-/* ---------- Loading Text ---------- */
-.lesson-loading {
-    color: #a5adba; /* muted gray for loading */
-    font-size: 1.2rem;
+.btn-back{
+    align-self: flex-start;
+    width: 10%;
+    height: 3em;
+    border-radius: 15px;
+    background-color: var(--bg-buttons);
+    color: var(--text-primary);
+    margin: 15px;
+    
 }
-
-/* ---------- Form Input ---------- */
-.lesson-container form input[type="text"] {
-    width: 100%;
-    padding: 0.7rem 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid #303446;
-    border-radius: 8px;
-    background-color: #1a1f2b;
-    color: #e0e6f0;
-    font-size: 1rem;
-}
-
-.lesson-container form input[type="text"]::placeholder {
-    color: #a5adba;
-}
-
-/* ---------- Form Button ---------- */
-.lesson-container form button {
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    background-color: #5fb3ff; /* accent color */
-    color: #0f111a;
-    font-weight: 600;
+.btn-back:hover{
+    background-color: var(--bg-hover);
     cursor: pointer;
-    transition: 0.2s;
 }
-
-.lesson-container form button:hover {
-    background-color: #3a8ddd;
-}
-

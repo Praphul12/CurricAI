@@ -4,9 +4,9 @@ import {CourseContext} from "../../context/CourseContext.js"
 import { useContext } from "react";
 
 
-const Topbar = () => {
+const Topbar = ({handleSidebarState}) => {
 
-  const {handleSidebarState} = useContext(CourseContext);
+  
   return (
     <header className="Topbar">
     <button className="HamMenu" onClick={handleSidebarState}>

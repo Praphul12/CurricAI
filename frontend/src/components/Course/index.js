@@ -5,6 +5,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useContext } from "react";
 import {CourseContext} from "../../context/CourseContext.js" 
+
+
 const Course = ({ course,selectedCourse }) => {
   const navigate = useNavigate();
   const {openModuleIndex, setOpenModuleIndex} = useContext(CourseContext);
@@ -17,6 +19,7 @@ const Course = ({ course,selectedCourse }) => {
   }
 
   const handleLessonSelect = async(lesson)=>{
+    console.log('Type of isEnriched:', typeof lesson.isEnriched, 'Value:', lesson.isEnriched);
 
     const token = await getAccessTokenSilently();
     if(lesson.isEnriched === true){
@@ -59,12 +62,15 @@ const Course = ({ course,selectedCourse }) => {
               "lessonTitle": lesson?.title
           })
         }
-  
+        console.log(selectedCourse?.title,course?.modules[openModuleIndex].title,lesson?.title);
         const res = await fetch(`http://localhost:5000/api/lesson/${lesson?._id}/generate`,options);
         const data = await res.json();
-        console.log(data);
+        console.log("generating lesson");
         const lessonData = data.lesson?.content?.[0]?.content;
         navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
+        lesson.isEnriched = true;
+
+
         
       } catch (error) {
           throw new Error("Unable to load lesson "+ error.message);

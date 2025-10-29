@@ -17,12 +17,15 @@ const Lesson = () => {
     useEffect(() => {
     if (state?.lesson) {
       setLessonData(state.lesson);
+      console.log(state?.lesson);
     }
   }, [state]);
 
     if(!lessonData) return <p className="lesson-loading">Loading lesson...</p>
 
     return (
+    <div>
+        <button className= {"btn-back"} onClick={()=>navigate(-1)}>Go back</button>
         <div className="lesson-container">
             {/* <pre className="lesson-json">{JSON.stringify(lessonData, null, 2)}</pre> */}
             {lessonData?.map((block,index)=>{
@@ -33,8 +36,8 @@ const Lesson = () => {
                         return <ParagraphBlock key={index} text={block.text} className="paragraph-block"/>;
                     case "code":
                         return <CodeBlock key={index} language={block.language} code={block.text} className="code-block"/>
-                    {/* case "video":
-                        return <VideoBlock key={index} url={block.url} className="video-block"/> */}
+                    case "video":
+                        return <VideoBlock key={index} url={block.url} className="video-block"/>
                     case "mcq":
                         return (
                             <MCQBlock key={index} 
@@ -48,8 +51,9 @@ const Lesson = () => {
                         return null;   
                 }
             })}
-            <button onClick={()=>navigate(-1)}>Go back</button>
+         
         </div>
+    </div>
     )
 }
 

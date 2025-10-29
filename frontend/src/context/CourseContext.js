@@ -12,7 +12,7 @@ export const CourseProvider = ({ children }) => {
   const [selectedCourseId, setSelectedCourseId] = useState(null);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedCourseModules, setSelectedCourseModules] = useState(null);
-
+ 
   const getUserCourses = useCallback(async () => {
     try {
       const token = await getAccessTokenSilently();
@@ -33,6 +33,7 @@ export const CourseProvider = ({ children }) => {
 
   const value = useMemo(
     () => ({
+        
       openModuleIndex,
       setOpenModuleIndex,
       courses,
@@ -46,6 +47,7 @@ export const CourseProvider = ({ children }) => {
       selectedCourseModules,
       setSelectedCourseModules,
       getUserCourses,
+
     }),
     [
       openModuleIndex,
@@ -55,6 +57,7 @@ export const CourseProvider = ({ children }) => {
       selectedCourse,
       selectedCourseModules,
       getUserCourses,
+     
     ]
   );
 
