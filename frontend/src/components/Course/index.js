@@ -7,11 +7,11 @@ import { useContext } from "react";
 import {CourseContext} from "../../context/CourseContext.js" 
 
 
-const Course = ({ course,selectedCourse }) => {
+const Course = () => {
+
   const navigate = useNavigate();
-  const {openModuleIndex, setOpenModuleIndex} = useContext(CourseContext);
-  // const [openModuleIndex,setOpenModuleIndex] = useState(null);
-  const {getAccessTokenSilently} = useAuth0();
+  const {openModuleIndex,setSelectedCourseModules, setOpenModuleIndex,selectedCourse,selectedCourseModules} = useContext(CourseContext);
+  const {getAccessTokenSilently,user} = useAuth0();
   const handlemoduleSelect = (moduleIndex)=>{
     setOpenModuleIndex((prev)=>
       prev === moduleIndex? null :moduleIndex
@@ -37,6 +37,7 @@ const Course = ({ course,selectedCourse }) => {
         const data = await res.json();
         const lessonData = data.lesson?.content?.[0]?.content;
         navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
+
       }
       catch (error) {
 
@@ -44,7 +45,8 @@ const Course = ({ course,selectedCourse }) => {
 
       }
         
-    }else{
+    } //Generate course
+    else{
 
       try {
         
@@ -58,17 +60,35 @@ const Course = ({ course,selectedCourse }) => {
           body:
             JSON.stringify({
               "courseTitle":selectedCourse?.title,
-              "moduleTitle": course?.modules[openModuleIndex].title,
+              "moduleTitle": selectedCourseModules?.modules[openModuleIndex].title,
               "lessonTitle": lesson?.title
           })
         }
-        console.log(selectedCourse?.title,course?.modules[openModuleIndex].title,lesson?.title);
+        // console.log(selectedCourse?.title,course?.modules[openModuleIndex].title,lesson?.title);
         const res = await fetch(`http://localhost:5000/api/lesson/${lesson?._id}/generate`,options);
         const data = await res.json();
         console.log("generating lesson");
         const lessonData = data.lesson?.content?.[0]?.content;
         navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
-        lesson.isEnriched = true;
+        
+        //We need to update the selected course with the new fetched course
+                //Update the selected course
+        try {
+    
+        const options = {
+          "method": "GET",
+          "headers":{
+            'content-type':'application/json',
+            authorization : `Bearer ${token}`
+          }
+        }
+        const res = await fetch(`http://localhost:5000/api/modules/${selectedCourseModules._id}`,options);
+        const moduleData = await res.json();
+        setSelectedCourseModules(moduleData);
+        console.log(moduleData);
+        } catch (error) {
+           throw new Error("Unable to load selected course "+ error.message);
+        }
 
       
         
@@ -79,11 +99,11 @@ const Course = ({ course,selectedCourse }) => {
   } 
 //  console.log(course);
   return(
-    course && course.modules.length > 0 ? (
+    selectedCourseModules && selectedCourseModules?.modules?.length > 0 ? (
       <div className="course">
           <ul className="course-modules">
             {
-              course.modules.map((module,index)=>(
+              selectedCourseModules.modules.map((module,index)=>(
                 <div className= "module-container"key={module._id}>
                   <button onClick={()=>handlemoduleSelect(index)}className="btn-module">
                     <span className="course-logo" ><FaPenAlt size={30}/></span> Module {index+1}: {module.title}
@@ -103,7 +123,7 @@ const Course = ({ course,selectedCourse }) => {
           </ul>
       </div>
   
-  ):(<p>Hello</p>)
+  ):(<p className="Default-text">{`Hi ${user.name},\n Got a topic? I'll turn it into a course!`}</p>)
 )
 
 };

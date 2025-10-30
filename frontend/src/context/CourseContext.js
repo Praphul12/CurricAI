@@ -25,7 +25,7 @@ export const CourseProvider = ({ children }) => {
       });
       const data = await res.json();
       setCourses(data.courses);
-      setSelectedCourseId(data?.courses?.[0]?._id || null);
+      setSelectedCourseId(null);
     } catch (error) {
       console.error(error);
     }

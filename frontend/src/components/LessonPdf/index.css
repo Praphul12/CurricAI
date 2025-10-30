@@ -1,0 +1,10 @@
+.lesson-container * {
+  page-break-inside: avoid;
+}
+
+.mcq-block {
+  page-break-before: auto;
+  page-break-after: auto;
+  page-break-inside: avoid;
+  margin-bottom: 10px;
+}

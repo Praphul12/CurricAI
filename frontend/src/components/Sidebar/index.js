@@ -8,9 +8,7 @@ import { useContext } from 'react';
 const Sidebar = () => {
   const {setSelectedCourseModules,getUserCourses,sidebarState,setSelectedCourse,courses,setCourses,selectedCourseId,setSelectedCourseId} = useContext(CourseContext);
   const { getAccessTokenSilently, user, logout } = useAuth0(); 
-  // const [courses, setCourses] =  useState(null); //Save the user courses
-  // const [selectedCourseId,setSelectedCourseId] = useState(null);
-
+  
 
   const handleCourseSelect = (course)=>{
     setSelectedCourseId(course._id);
@@ -25,7 +23,9 @@ const Sidebar = () => {
             authorization : `Bearer ${token}`
           }
         }
+        
 
+        //Fetch the selected course from the backend  
         const res = await fetch(`http://localhost:5000/api/modules/${course._id}`,options);
         const moduleData = await res.json();
         setSelectedCourseModules(moduleData);

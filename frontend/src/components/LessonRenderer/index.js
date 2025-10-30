@@ -7,6 +7,7 @@ import MCQBlock from '../Blocks/MCQ';
 import './index.css'
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import LessonPdf from '../LessonPdf';
 
 const Lesson = () => {
     const [lessonData,setLessonData] = useState(null);
@@ -26,7 +27,8 @@ const Lesson = () => {
     return (
     <div>
         <button className= {"btn-back"} onClick={()=>navigate(-1)}>Go back</button>
-        <div className="lesson-container">
+        
+        <div  id="lesson-content" className="lesson-container">
             {/* <pre className="lesson-json">{JSON.stringify(lessonData, null, 2)}</pre> */}
             {lessonData?.map((block,index)=>{
                 switch(block.type){
@@ -53,6 +55,7 @@ const Lesson = () => {
             })}
          
         </div>
+        {lessonData && <LessonPdf lesson={lessonData}/>}
     </div>
     )
 }
