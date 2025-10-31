@@ -18,7 +18,7 @@ export const createCourse = async(req,res)=>{
         const parsedContent = JSON.parse(rawContent);
 
        //Save the course
-        const course = await Course.saveCourse(userId,parsedContent.title,parsedContent.description,parsedContent.tags);
+        var course = await Course.saveCourse(userId,parsedContent.title,parsedContent.description,parsedContent.tags);
         //Save the modules 
         const [lessons,moduleIds] = await Module.saveModule(course._id,parsedContent.modules);
         //Now each module has lessons to it so save them together using insertMany
@@ -30,8 +30,8 @@ export const createCourse = async(req,res)=>{
 
         }
         //Finally update the moduleIds in the course 
-        const updatedCourse = await Course.findByIdAndUpdate(course._id,{modules: moduleIds},{new: true}).populate('modules');
-        res.status(200).json({updatedCourse});
+        course = await Course.findByIdAndUpdate(course._id,{modules: moduleIds},{new: true}).populate('modules');
+        res.status(200).json({course});
         
     } catch (error) {
         

@@ -1,62 +1,99 @@
 .sidebar-container {
-    max-width: 250px;
+    
     background-color: var(--bg-light);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    width: 100%;
     flex: 1;
+ 
     border-radius: 10px;
+    overflow: hidden;
     box-shadow: 0 4px 10px var(--bg-shadow);
-    transition: transform 0.3s ease, margin-right 0.3s ease;
+
 }
 
-.sidebar-container.collapse {
-    transform: translateX(-100%);
-    margin-right: -250px;
-}
 
-.sidebar-container.open {
-  transform: translateX(0);
-}
 
 .sidebar-top {
-    flex: 1;   /* grow & shrink */
+   /* grow & shrink */
     min-height: 0;    /* critical so it can shrink inside a flex column */
     overflow-y: auto; /* scroll if content too tall */
+    height: 90%;
+    width: 100%;
+
+}
+.sidebar-top::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-top::-webkit-scrollbar-track {
+  background: var(--bg-light);
+  border-radius: 10px;
+}
+
+.sidebar-top::-webkit-scrollbar-thumb {
+  background-color: var(--bg-hover);
+  border-radius: 10px;
+  border: 2px solid var(--bg-light);
+}
+
+.sidebar-top::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-primary);
+}
+
+/* Firefox */
+.sidebar-top {
+  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+  scrollbar-color: var(--bg-hover) var(--bg-light); /* thumb | track */
 }
 
 .sidebar-course-list{
-
+    width: 100%;
     display: flex;
     flex-direction: column;
+ 
     /* justify-content: flex-start; */
 }
 
+.course-heading{
+    margin-left: 10px;
+}
 .course-title{
-    width: 240px;
-    height: 30px;
+
+    /* height: 6vh; */
     margin-bottom: 5px;
     padding: 3px;
+    height: 30px;
+
+    
 }
 
 .btn-title{
-    padding: 5px;
-    width: 240px;
-    height: 40px;
+    font-size: small;
+    padding-left: 5px;
+    width: 100%;
+    height: 38px;
     border-radius: 8px;
     border: 0;
     background-color: var(--bg-light);
     color: var(--text-primary);
     text-align: left;
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
+    /* box-shadow: 0 0px 3px var(--bg-shadow); */
 
 }
 
 .btn-title:hover{
-    background-color: var(--bg-hover);
-    cursor: pointer;
+  background: linear-gradient(
+    145deg,
+    var(--bg-light) 10%,
+    var(--bg-gradient) 90%
+  );
+      cursor: pointer;
 }
+
 
 .btn-title.selected {
   background-color: var(--bg-hover);
@@ -64,11 +101,11 @@
 }
 
 .sidebar-bottom{
-    width: 250px;
+    width: 100%;
     /* background-color: aqua; */
 
     display: flex;
-    flex-shrink: 0;
+
     flex-direction: row;
  
     box-shadow: 0 4px 20px var(--bg-shadow);

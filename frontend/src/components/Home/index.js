@@ -7,12 +7,13 @@ import Course from "../Course";
 import { IoSend } from "react-icons/io5";
 import {CourseContext} from "../../context/CourseContext.js" 
 import { useContext } from "react";
+import Spinner from "../../utils/Spinner.js";
 const Home = ({handleTheme}) => {
 
   const { getAccessTokenSilently } = useAuth0();
   const [prompt, setPrompt] = useState("");
-  const {selectedCourse,getUserCourses,setSelectedCourse,sidebarState,setSidebarState,selectedCourseModules,setSelectedCourseModules} = useContext(CourseContext);
-
+  const {selectedCourse,selectedCourseId,setSelectedCourseId,getUserCourses,setSelectedCourse,sidebarState,setSidebarState,selectedCourseModules,setSelectedCourseModules} = useContext(CourseContext);
+  const [courseLoading, setCourseLoading] = useState(false);
   // const [selectedCourse,setSelectedCourse] = useState(null);
   // const [sidebarState, setSidebarState] = useState(1);
   // const [selectedCourseModules,setSelectedCourseModules] = useState(null);
@@ -25,8 +26,13 @@ const Home = ({handleTheme}) => {
   const handlePrompt = (e) => setPrompt(e.target.value);
 
   const handleSubmit = async (e) => {
+    setCourseLoading(true);
+    console.log(setCourseLoading);
     e.preventDefault();
+
+    //Geenrate the course
     try {
+
       const token = await getAccessTokenSilently();
       const res = await fetch("http://localhost:5000/api/course/create", {
         method: "POST",
@@ -37,12 +43,38 @@ const Home = ({handleTheme}) => {
         body: JSON.stringify({ prompt }),
       });
       if (res.ok) {
-        await res.json();
+        const course = await res.json();
         await getUserCourses();
         setPrompt("");
+        // console.log(data);
+        setSelectedCourseId(course?.course?._id );
+        // console.log(course?.course?._id );
+  
+      try {
+        const token = await getAccessTokenSilently();
+        const options = {
+          "method": "GET",
+          "headers":{
+            'content-type':'application/json',
+            authorization : `Bearer ${token}`
+          }
+        }
+        
+
+        //Fetch the modules of selected course from the backend  
+        const res = await fetch(`http://localhost:5000/api/modules/${course?.course?._id }`,options);
+        const moduleData = await res.json();
+        setSelectedCourseModules(moduleData);
+         setCourseLoading(false)
+        // console.log(moduleData);
+      } catch (error) {
+          console.error(error);
       }
+
+    }
     } catch (error) {
       console.error(error);
+      setCourseLoading(false);
     }
   };
 
@@ -55,7 +87,7 @@ const Home = ({handleTheme}) => {
             />
         </div>
        <div className="main-content">
-        <div className="Sidebar-container">
+        <div className={`Sidebar-container ${sidebarState? "open":"collapse"}`}>
             <Sidebar 
              setSelectedCourseModules={setSelectedCourseModules}
              selectedCourseModules = {selectedCourseModules} 
@@ -65,11 +97,7 @@ const Home = ({handleTheme}) => {
         </div>
       <div className="Course-chat">
         <div className="Course-container">
-            <Course 
-             course={selectedCourseModules}
-             selectedCourse = {selectedCourse}
-
-             />
+            {courseLoading ? <Spinner/> : <Course />}
         </div>
         <div className="Chat-container">
           <form className="chat-form" onSubmit={handleSubmit}> 

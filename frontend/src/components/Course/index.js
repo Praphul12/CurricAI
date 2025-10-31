@@ -12,6 +12,7 @@ const Course = () => {
   const navigate = useNavigate();
   const {openModuleIndex,setSelectedCourseModules, setOpenModuleIndex,selectedCourse,selectedCourseModules} = useContext(CourseContext);
   const {getAccessTokenSilently,user} = useAuth0();
+  const [lessonLoadingId, setLessonLoadingId] = useState(null);
   const handlemoduleSelect = (moduleIndex)=>{
     setOpenModuleIndex((prev)=>
       prev === moduleIndex? null :moduleIndex
@@ -48,6 +49,7 @@ const Course = () => {
     } //Generate course
     else{
 
+      setLessonLoadingId(lesson._id);
       try {
         
   
@@ -69,6 +71,7 @@ const Course = () => {
         const data = await res.json();
         console.log("generating lesson");
         const lessonData = data.lesson?.content?.[0]?.content;
+        
         navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
         
         //We need to update the selected course with the new fetched course
@@ -82,7 +85,8 @@ const Course = () => {
             authorization : `Bearer ${token}`
           }
         }
-        const res = await fetch(`http://localhost:5000/api/modules/${selectedCourseModules._id}`,options);
+        console.log(selectedCourseModules._id);
+        const res = await fetch(`http://localhost:5000/api/modules/${selectedCourse?._id}`,options);
         const moduleData = await res.json();
         setSelectedCourseModules(moduleData);
         console.log(moduleData);
@@ -95,6 +99,9 @@ const Course = () => {
       } catch (error) {
           throw new Error("Unable to load lesson "+ error.message);
       }
+      finally{
+        setLessonLoadingId(null);
+      }
     }
   } 
 //  console.log(course);
@@ -105,13 +112,15 @@ const Course = () => {
             {
               selectedCourseModules.modules.map((module,index)=>(
                 <div className= "module-container"key={module._id}>
-                  <button onClick={()=>handlemoduleSelect(index)}className="btn-module">
+                  <button onClick={()=>handlemoduleSelect(index)} className="btn-module">
                     <span className="course-logo" ><FaPenAlt size={30}/></span> Module {index+1}: {module.title}
                   </button>
                 
                     {openModuleIndex!= null && openModuleIndex === index &&(
                         module.lessons.map((lesson,index)=>(
-                          <button key= {index} onClick={()=>handleLessonSelect(lesson)} className="btn-lesson-title">{lesson.title}</button>
+                          <button key= {index} onClick={()=>handleLessonSelect(lesson)} className={`btn-lesson-title ${
+    lessonLoadingId === lesson._id  ? "loading-border" : ""
+  }`}>{lesson.title}</button>
                         
                         ))
                        

@@ -42,14 +42,14 @@ const Sidebar = () => {
   }, [getUserCourses]);
 
   return (
-<div className={`sidebar-container ${sidebarState?"open":"collapse"}`}>
+<div className={"sidebar-container"}>
   <div className="sidebar-top">
-    <h3>Courses</h3>
+    <h3 className='course-heading'>Courses</h3>
     <ul className='sidebar-course-list'>
       {courses && courses.length > 0 ? (
         courses.map((course, index) => (
           <div className = "course-title" key={course._id}>
-            <button  className={`btn-title ${selectedCourseId &&  selectedCourseId === course._id? "selected":""}`} onClick = {()=>handleCourseSelect(course)}>{course.title}</button>
+            <button  className={`btn-title ${selectedCourseId &&  selectedCourseId === course._id? "selected":""}`} onClick = {()=>handleCourseSelect(course)}>{course.title.length > 50 ? course.title.slice(0,50): course.title + "..."}</button>
           </div>
         ))
       ) : (

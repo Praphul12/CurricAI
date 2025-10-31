@@ -60,4 +60,6 @@ courseSchema.statics.getUserCourses = async function (userId) {
     }
 }
 
+
+
 export const Course = mongoose.model('Course',courseSchema);

@@ -9,21 +9,29 @@
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
- 
+    position: relative;
     /* align-items: flex-start;  */
 }
 
 .btn-back{
-    align-self: flex-start;
-    width: 10%;
-    height: 3em;
-    border-radius: 15px;
-    background-color: var(--bg-buttons);
-    color: var(--text-primary);
-    margin: 15px;
+  align-self: flex-start;
+  margin: 10px;
+  width: auto;
+  padding: 8px 12px;
+  height: auto;
+  border-radius: 8px;
+  background-color: var(--bg-hover);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
     
 }
 .btn-back:hover{
-    background-color: var(--bg-hover);
-    cursor: pointer;
+  background: linear-gradient(
+    145deg,
+    var(--bg-light) 10%,
+    var(--bg-gradient) 90%
+  );
+      cursor: pointer;
 }
