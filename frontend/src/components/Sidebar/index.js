@@ -49,7 +49,7 @@ const Sidebar = () => {
       {courses && courses.length > 0 ? (
         courses.map((course, index) => (
           <div className = "course-title" key={course._id}>
-            <button  className={`btn-title ${selectedCourseId &&  selectedCourseId === course._id? "selected":""}`} onClick = {()=>handleCourseSelect(course)}>{course.title.length > 50 ? course.title.slice(0,50): course.title + "..."}</button>
+            <button  className={`btn-title ${selectedCourseId &&  selectedCourseId === course._id? "selected":""}`} onClick = {()=>handleCourseSelect(course)}>{course.title.length > 50 ? course.title.slice(0,50) + ".." : course.title }</button>
           </div>
         ))
       ) : (
