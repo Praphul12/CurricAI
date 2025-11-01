@@ -42,7 +42,7 @@ export const createCourse = async(req,res)=>{
 export const getCourse = async(req,res)=>{
 
     try {
-        const userId = "google-oauth2|101643413532842411490"; //req.auth.payload.sub 
+        const userId = req.auth.payload.sub 
         const courses = await Course.getUserCourses(userId);
         res.status(200).json({courses});
         
