@@ -18,7 +18,7 @@ const Lesson = () => {
     useEffect(() => {
     if (state?.lesson) {
       setLessonData(state.lesson);
-      console.log(state?.lesson);
+    //   console.log(state?.lesson);
     }
   }, [state]);
 

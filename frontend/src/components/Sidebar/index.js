@@ -29,7 +29,7 @@ const Sidebar = () => {
         const res = await fetch(`http://localhost:5000/api/modules/${course._id}`,options);
         const moduleData = await res.json();
         setSelectedCourseModules(moduleData);
-        console.log(moduleData);
+        // console.log(moduleData);
       } catch (error) {
           console.error(error);
       }
@@ -53,7 +53,7 @@ const Sidebar = () => {
           </div>
         ))
       ) : (
-        <p>Generate Course</p>
+        <p>No Course</p>
       )}
     </ul>
   </div>

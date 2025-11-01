@@ -13,3 +13,20 @@
   word-break: break-word;
   font-size: 0.9rem;
 }
+
+/* ---------- Responsive adjustments ---------- */
+@media (max-width: 600px) {
+  .code-container {
+    max-width: 100%;       /* take full width */
+    padding: 0.5rem;       /* reduce padding for smaller view */
+    margin: 0.5rem 0;      /* tighten vertical spacing */
+    border-radius: 6px;
+  }
+
+  .code-container pre {
+    font-size: 0.4rem;     /* slightly smaller font for readability */
+    line-height: 1.4;
+  }
+
+  /* Optional: If you want horizontal scrolling instead of wrapping */
+}

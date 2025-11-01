@@ -8,6 +8,7 @@ import { IoSend } from "react-icons/io5";
 import {CourseContext} from "../../context/CourseContext.js" 
 import { useContext } from "react";
 import Spinner from "../../utils/Spinner.js";
+import { useEffect } from "react";
 const Home = ({handleTheme}) => {
 
   const { getAccessTokenSilently } = useAuth0();
@@ -19,6 +20,21 @@ const Home = ({handleTheme}) => {
   // const [selectedCourseModules,setSelectedCourseModules] = useState(null);
 
   // console.log(sidebarState);
+
+useEffect(() => {
+  const handleResize = () => {
+    if (window.innerWidth < 600) {
+      setSidebarState(false); // collapse
+    } else {
+      setSidebarState(true);  // expand
+    }
+  };
+
+  handleResize(); // run on mount
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, [setSidebarState]);
 
   const handleSidebarState = ()=>{
     setSidebarState(!sidebarState);
@@ -48,6 +64,7 @@ const Home = ({handleTheme}) => {
         setPrompt("");
         // console.log(data);
         setSelectedCourseId(course?.course?._id );
+        setSelectedCourse(course?.course);
         // console.log(course?.course?._id );
   
       try {

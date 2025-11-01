@@ -1,9 +1,11 @@
 .para {
-    align-self: self-start; 
+  width: 100%;
+  text-align: left;
 }
 
-.para p{
-    margin-bottom: 2rem;
-    line-height: 1.6;
-    font-size: medium;
+.para p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  font-size: 1rem;
+  color: var(--text-primary);
 }

@@ -20,7 +20,7 @@ const Course = () => {
   }
 
   const handleLessonSelect = async(lesson)=>{
-    console.log('Type of isEnriched:', typeof lesson.isEnriched, 'Value:', lesson.isEnriched);
+    // console.log('Type of isEnriched:', typeof lesson.isEnriched, 'Value:', lesson.isEnriched);
 
     const token = await getAccessTokenSilently();
     if(lesson.isEnriched === true){
@@ -69,7 +69,7 @@ const Course = () => {
         // console.log(selectedCourse?.title,course?.modules[openModuleIndex].title,lesson?.title);
         const res = await fetch(`http://localhost:5000/api/lesson/${lesson?._id}/generate`,options);
         const data = await res.json();
-        console.log("generating lesson");
+        // console.log("generating lesson");
         const lessonData = data.lesson?.content?.[0]?.content;
         
         navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
@@ -85,11 +85,11 @@ const Course = () => {
             authorization : `Bearer ${token}`
           }
         }
-        console.log(selectedCourseModules._id);
+        // console.log(selectedCourse?._id);
         const res = await fetch(`http://localhost:5000/api/modules/${selectedCourse?._id}`,options);
         const moduleData = await res.json();
         setSelectedCourseModules(moduleData);
-        console.log(moduleData);
+        // console.log(moduleData);
         } catch (error) {
            throw new Error("Unable to load selected course "+ error.message);
         }

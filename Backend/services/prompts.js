@@ -17,9 +17,9 @@ Return only valid JSON in this structure:
 }
 
 Guidelines:
-- title should be short around 50 characters
+- title should be short around 30 characters
 - Progress logically from beginner to advanced topics.
-- Include 4–6 modules, each with 3–5 lessons.
+- Include 4–6 modules, each with 4–5 lessons.
 - Output raw JSON only, no markdown or commentary.
 `;
 }

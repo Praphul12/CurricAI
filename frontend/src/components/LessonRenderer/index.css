@@ -35,3 +35,10 @@
   );
       cursor: pointer;
 }
+
+@media(max-width: 600px){
+    .lesson-container{
+      padding: rem;
+      align-items: flex-start;
+    }
+}

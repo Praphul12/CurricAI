@@ -9,7 +9,7 @@ import { Lesson } from "../models/lessonModel.js";
 export const createCourse = async(req,res)=>{
     try {
         const topic = req.body.prompt;
-        const userId = "google-oauth2|101643413532842411490"; //req.auth.payload.sub 
+        const userId =  req.auth.payload.sub;  //"google-oauth2|101643413532842411490";
         const data = await courseGenerator(topic);
         //Extracting the raw json string
         const rawContent = data.choices[0].message.content;

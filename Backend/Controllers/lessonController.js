@@ -36,7 +36,7 @@ export const generateLesson = async(req,res)=>{
 
         const lesson = await Lesson.findByIdAndUpdate(lessonId, {content : parsedLesson,isEnriched: true},{new:true});
         res.status(200).json({lesson});
-        console.log(lesson);
+        // console.log(lesson);
 
     } catch (error) {
         res.status(400).json({error});

@@ -6,8 +6,8 @@ export const CourseContext = createContext();
 export const CourseProvider = ({ children }) => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const [sidebarState, setSidebarState] = useState(true);
-  const [openModuleIndex, setOpenModuleIndex] = useState(null);
+  const [sidebarState, setSidebarState] = useState(window.innerWidth < 600 ? false:true);
+  const [openModuleIndex, setOpenModuleIndex] = useState(null); 
   const [courses, setCourses] = useState(null);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
   const [selectedCourse, setSelectedCourse] = useState(null);

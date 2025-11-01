@@ -16,7 +16,7 @@
 }
 
 .main-content {
-  height: 92vh;
+  height: 94vh;
   display: flex;
   width: 100vw;    
  }
@@ -61,12 +61,23 @@
 
 }
 
-.chat-input{
+.chat-input {
   width: 100%;
   background-color: var(--bg-hover);
-  height: 70%;
+  /* height: 2.8rem; */
   border-radius: 30px;
   box-shadow: 0 4px 10px var(--bg-shadow);
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 1rem; 
+  caret-color: var(--text-primary); /* makes cursor visible on dark bg */
+}
+
+.chat-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
 }
 
 .chat-button{
@@ -74,4 +85,26 @@
   border: 0px;
   margin: 1%;
   color: var(--text-primary);
+}
+
+@media (max-width: 600px) {
+  .Sidebar-container {
+    position: absolute;
+    top: 7vh;
+    left: 0;
+    height: 90vh;
+    /* width: 250px; */
+    z-index: 1000; /* ensures it sits above Course-chat */
+    transition: transform 0.3s ease;
+    transform: translateX(-100%); /* hidden by default */
+  }
+
+  .Sidebar-container.open {
+    transform: translateX(0); /* slide in when open */
+  }
+
+  .Course-chat {
+    flex: 1;
+    position: relative;
+  }
 }

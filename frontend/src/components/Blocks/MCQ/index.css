@@ -79,3 +79,33 @@
   margin-top: 1rem;
   font-weight: 500;
 }
+
+@media (max-width: 600px) {
+  .mcq-container {
+    width: 90%;               /* take almost full width */
+    padding: 1rem;            /* reduce padding */
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .mcq-question {
+    font-size: 1rem;          /* slightly smaller */
+    text-align: center;
+  }
+
+  .option {
+    font-size: 0.9rem;        /* adjust text size */
+    padding: 0.5rem 0.8rem;
+  }
+
+  .submit-btn {
+    width: 100%;              /* make button stretch full width */
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .feedback {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}

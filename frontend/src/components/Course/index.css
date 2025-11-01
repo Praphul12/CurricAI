@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
   margin: 10px;
-
+  
   /* border: 10px solid white; */
  
 }
@@ -40,7 +40,7 @@
   display: flex;
   flex-direction: column;
   /* border: 1px solid white; */
-  
+  width: 100%;
   padding: 5px;
 }
 
@@ -164,4 +164,18 @@
   100% {
     background-position: 300% 50%;
   }
+}
+
+@media(max-width :600px){
+
+  .module-container{
+    width: 80vw
+  }
+  .btn-module{
+    width:100%;
+  }
+  .course-logo{
+    width: 80px;
+  }
+
 }
