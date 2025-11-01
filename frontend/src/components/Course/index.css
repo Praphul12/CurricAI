@@ -50,7 +50,7 @@
     width: 50vw;
     height: 9vh;
     border-radius: 15px;
-    font-size: small;
+    font-size: medium;
     background-color: var(--bg-buttons);
     color: var(--text-primary);
     border: 1;
@@ -173,6 +173,7 @@
   }
   .btn-module{
     width:100%;
+    font-size: small;
   }
   .course-logo{
     width: 80px;

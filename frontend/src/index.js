@@ -15,6 +15,7 @@ root.render(
       redirect_uri: `${window.location.origin}/home`,
       audience: process.env.REACT_APP_AUDIENCE
     }}
+    logoutParams={{ returnTo: window.location.origin }}
   >
     <CourseProvider>
       <App />
