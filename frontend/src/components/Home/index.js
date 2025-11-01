@@ -10,7 +10,7 @@ import { useContext } from "react";
 import Spinner from "../../utils/Spinner.js";
 import { useEffect } from "react";
 const Home = ({handleTheme}) => {
-
+  const APP_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const { getAccessTokenSilently } = useAuth0();
   const [prompt, setPrompt] = useState("");
   const {selectedCourse,selectedCourseId,setSelectedCourseId,getUserCourses,setSelectedCourse,sidebarState,setSidebarState,selectedCourseModules,setSelectedCourseModules} = useContext(CourseContext);
@@ -50,7 +50,7 @@ useEffect(() => {
     try {
 
       const token = await getAccessTokenSilently();
-      const res = await fetch("http://localhost:5000/api/course/create", {
+      const res = await fetch(`${APP_URL}/api/course/create`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -79,7 +79,7 @@ useEffect(() => {
         
 
         //Fetch the modules of selected course from the backend  
-        const res = await fetch(`http://localhost:5000/api/modules/${course?.course?._id }`,options);
+        const res = await fetch(`${APP_URL}/api/modules/${course?.course?._id }`,options);
         const moduleData = await res.json();
         setSelectedCourseModules(moduleData);
          setCourseLoading(false)

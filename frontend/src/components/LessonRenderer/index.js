@@ -6,7 +6,7 @@ import VideoBlock from '../Blocks/Video';
 import MCQBlock from '../Blocks/MCQ';
 import './index.css'
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
+
 import LessonPdf from '../LessonPdf';
 
 const Lesson = () => {

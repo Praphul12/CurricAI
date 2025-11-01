@@ -8,7 +8,7 @@ import { useContext } from 'react';
 const Sidebar = () => {
   const {setSelectedCourseModules,getUserCourses,sidebarState,setSelectedCourse,courses,setCourses,selectedCourseId,setSelectedCourseId} = useContext(CourseContext);
   const { getAccessTokenSilently, user, logout } = useAuth0(); 
-  
+  const APP_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
   const handleCourseSelect = (course)=>{
     setSelectedCourseId(course._id);
@@ -26,7 +26,7 @@ const Sidebar = () => {
         
 
         //Fetch the selected course from the backend  
-        const res = await fetch(`http://localhost:5000/api/modules/${course._id}`,options);
+        const res = await fetch(`${APP_URL}/api/modules/${course._id}`,options);
         const moduleData = await res.json();
         setSelectedCourseModules(moduleData);
         // console.log(moduleData);

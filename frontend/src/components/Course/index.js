@@ -8,7 +8,7 @@ import {CourseContext} from "../../context/CourseContext.js"
 
 
 const Course = () => {
-
+  const APP_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const navigate = useNavigate();
   const {openModuleIndex,setSelectedCourseModules, setOpenModuleIndex,selectedCourse,selectedCourseModules} = useContext(CourseContext);
   const {getAccessTokenSilently,user} = useAuth0();
@@ -34,7 +34,7 @@ const Course = () => {
           }
         }
   
-        const res = await fetch(`http://localhost:5000/api/lesson/${lesson._id}`,options);
+        const res = await fetch(`${APP_URL}/api/lesson/${lesson._id}`,options);
         const data = await res.json();
         const lessonData = data.lesson?.content?.[0]?.content;
         navigate(`/lesson/${lesson._id}`,{state: {lesson : lessonData}});
@@ -67,7 +67,7 @@ const Course = () => {
           })
         }
         // console.log(selectedCourse?.title,course?.modules[openModuleIndex].title,lesson?.title);
-        const res = await fetch(`http://localhost:5000/api/lesson/${lesson?._id}/generate`,options);
+        const res = await fetch(`${APP_URL}/api/lesson/${lesson?._id}/generate`,options);
         const data = await res.json();
         // console.log("generating lesson");
         const lessonData = data.lesson?.content?.[0]?.content;
@@ -86,7 +86,7 @@ const Course = () => {
           }
         }
         // console.log(selectedCourse?._id);
-        const res = await fetch(`http://localhost:5000/api/modules/${selectedCourse?._id}`,options);
+        const res = await fetch(`${APP_URL}/api/modules/${selectedCourse?._id}`,options);
         const moduleData = await res.json();
         setSelectedCourseModules(moduleData);
         // console.log(moduleData);

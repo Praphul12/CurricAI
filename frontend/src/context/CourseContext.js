@@ -5,7 +5,7 @@ export const CourseContext = createContext();
 
 export const CourseProvider = ({ children }) => {
   const { getAccessTokenSilently } = useAuth0();
-
+  const APP_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const [sidebarState, setSidebarState] = useState(window.innerWidth < 600 ? false:true);
   const [openModuleIndex, setOpenModuleIndex] = useState(null); 
   const [courses, setCourses] = useState(null);
@@ -16,7 +16,7 @@ export const CourseProvider = ({ children }) => {
   const getUserCourses = useCallback(async () => {
     try {
       const token = await getAccessTokenSilently();
-      const res = await fetch("http://localhost:5000/api/course/allCourse", {
+      const res = await fetch(`${APP_URL}/api/course/allCourse`, {
         method: "GET",
         headers: {
           "content-type": "application/json",
