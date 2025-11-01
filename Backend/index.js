@@ -10,7 +10,7 @@ const app = express();
 import courseRoutes from './Routes/courseRoutes.js'
 import moduleRoutes from './Routes/moduleRoutes.js'
 import lessonRoutes from './Routes/lessonRoutes.js';
-const port = 5000 || process.env.PORT;
+const port =  process.env.PORT || 5000;
 
 //JWT validation middleware
 
