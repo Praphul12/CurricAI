@@ -1,0 +1,8 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "start": "cd Backend && npm start",
+    "build": "cd Backend && npm install"
+  }
+}
