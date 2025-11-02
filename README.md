@@ -7,7 +7,7 @@
 ## 🧰 Tech Stack  
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,vite,nodejs,express,mongodb,auth0,openai,youtube,vercel,railway,git,github" />
+  <img src="https://skillicons.dev/icons?i=react,nodejs,express,mongodb,github" />
 </p>
 
 | Layer | Technology | Purpose |
