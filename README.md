@@ -1,5 +1,8 @@
 # 🧠 CurricAI: AI-Powered Course Generator
 
+**CurricAI** is a **dynamic full-stack AI-powered web application** that transforms a simple topic prompt into a complete, structured learning course.  
+It automatically generates course outlines, modules, and detailed lessons enriched with videos and quizzes — creating a self-contained, interactive learning experience from a single line of text.
+
 [![Live Demo](https://img.shields.io/badge/Try%20it%20Live-Vercel-brightgreen)](https://curric-ai-zeta.vercel.app/home)
 
 ---
@@ -19,12 +22,6 @@
 | **Auth** | Auth0 | Secure OAuth 2.0 login |
 | **Integrations** | YouTube API | Educational video suggestions |
 | **Deployment** | Vercel + Railway | Cloud hosting with CI/CD |
-
----
-
-## 🚀 Overview
-CurricAI is a **dynamic full-stack AI-powered web application** that transforms a simple topic prompt into a complete, structured learning course.  
-It automatically generates course outlines, modules, and detailed lessons enriched with videos and quizzes — creating a self-contained, interactive learning experience from a single line of text.
 
 ---
 
