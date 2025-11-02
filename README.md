@@ -7,11 +7,6 @@ It automatically generates course outlines, modules, and detailed lessons enrich
 
 ---
 
-
-<p>
-  <img src="https://skillicons.dev/icons?i=react,nodejs,express,mongodb,github" />
-</p>
-
 ## 🎥 Demo Video
 <p align="center">
   <img src="Demo/CurricAIDemo.gif" width="700" alt="CurricAI Demo" />
@@ -32,6 +27,10 @@ It automatically generates course outlines, modules, and detailed lessons enrich
 ---
 
 ## 🧰 Tech Stack  
+
+<p>
+  <img src="https://skillicons.dev/icons?i=react,nodejs,express,mongodb,github" />
+</p>
 
 | Layer | Technology | Purpose |
 |--------|-------------|----------|
