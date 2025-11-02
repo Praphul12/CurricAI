@@ -7,11 +7,31 @@ It automatically generates course outlines, modules, and detailed lessons enrich
 
 ---
 
-## 🧰 Tech Stack  
 
 <p>
   <img src="https://skillicons.dev/icons?i=react,nodejs,express,mongodb,github" />
 </p>
+
+## 🎥 Demo Video
+<p align="center">
+  <img src="Demo/CurricAIDemo.gif" width="700" alt="CurricAI Demo" />
+</p>
+
+---
+
+
+## 💡 Key Highlights
+
+- **🧩 AI-Powered Curriculum Generation** – Converts any topic (e.g., *“Intro to React Hooks”*) into structured courses using OpenAI.  
+- **⚡ Dynamic & Interactive Site** – Real-time generation with persistent user-specific storage — not a static generator.  
+- **📚 Rich Lesson Experience** – Lessons include text, code, MCQs, and embedded YouTube videos.  
+- **🔐 Secure Auth & Personalization** – OAuth 2.0 login via Auth0 for user-specific courses.  
+- **🧾 Lesson PDF Export** – Offline download with `jsPDF` and `html2canvas`.  
+- **🌐 Seamless Deployment** – Frontend on Vercel, backend on Railway, CI/CD via GitHub Actions.  
+
+---
+
+## 🧰 Tech Stack  
 
 | Layer | Technology | Purpose |
 |--------|-------------|----------|
@@ -22,24 +42,6 @@ It automatically generates course outlines, modules, and detailed lessons enrich
 | **Auth** | Auth0 | Secure OAuth 2.0 login |
 | **Integrations** | YouTube API | Educational video suggestions |
 | **Deployment** | Vercel + Railway | Cloud hosting with CI/CD |
-
----
-
-## 🎥 Demo Video
-<p align="center">
-  <img src="Demo/CurricAIDemo.gif" width="700" alt="CurricAI Demo" />
-</p>
-
----
-
-## 💡 Key Highlights
-
-- **🧩 AI-Powered Curriculum Generation** – Converts any topic (e.g., *“Intro to React Hooks”*) into structured courses using OpenAI.  
-- **⚡ Dynamic & Interactive Site** – Real-time generation with persistent user-specific storage — not a static generator.  
-- **📚 Rich Lesson Experience** – Lessons include text, code, MCQs, and embedded YouTube videos.  
-- **🔐 Secure Auth & Personalization** – OAuth 2.0 login via Auth0 for user-specific courses.  
-- **🧾 Lesson PDF Export** – Offline download with `jsPDF` and `html2canvas`.  
-- **🌐 Seamless Deployment** – Frontend on Vercel, backend on Railway, CI/CD via GitHub Actions.  
 
 ---
 
