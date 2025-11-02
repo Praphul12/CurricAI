@@ -9,7 +9,7 @@ It automatically generates course outlines, modules, and detailed lessons enrich
 
 ## 🧰 Tech Stack  
 
-<p align="center">
+<p>
   <img src="https://skillicons.dev/icons?i=react,nodejs,express,mongodb,github" />
 </p>
 
