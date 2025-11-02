@@ -24,7 +24,7 @@
 
 ## 🚀 Overview
 CurricAI is a **dynamic full-stack AI-powered web application** that transforms a simple topic prompt into a complete, structured learning course.  
-It automatically generates course outlines, modules, and detailed lessons enriched with videos, quizzes, and multilingual explanations — creating a self-contained, interactive learning experience from a single line of text.
+It automatically generates course outlines, modules, and detailed lessons enriched with videos and quizzes — creating a self-contained, interactive learning experience from a single line of text.
 
 ---
 
