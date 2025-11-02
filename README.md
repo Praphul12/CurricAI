@@ -1,7 +1,24 @@
 # 🧠 CurricAI: AI-Powered Course Generator
 
-[![Live Demo](https://img.shields.io/badge/Try%20it%20Live-Vercel-brightgreen)](https://curric-ai-zeta.vercel.app/home)  
-**Tech Stack:** React (Vite) · Node.js · Express · MongoDB · Auth0 · OpenAI · YouTube API  
+[![Live Demo](https://img.shields.io/badge/Try%20it%20Live-Vercel-brightgreen)](https://curric-ai-zeta.vercel.app/home)
+
+---
+
+## 🧰 Tech Stack  
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=react,vite,nodejs,express,mongodb,auth0,openai,youtube,vercel,railway,git,github" />
+</p>
+
+| Layer | Technology | Purpose |
+|--------|-------------|----------|
+| **Frontend** | React (Vite), Tailwind CSS | Dynamic and responsive UI |
+| **Backend** | Node.js + Express | RESTful API logic |
+| **Database** | MongoDB Atlas | Persistent course storage |
+| **AI Services** | OpenAI API | Course & lesson generation |
+| **Auth** | Auth0 | Secure OAuth 2.0 login |
+| **Integrations** | YouTube API | Educational video suggestions |
+| **Deployment** | Vercel + Railway | Cloud hosting with CI/CD |
 
 ---
 
@@ -12,69 +29,59 @@ It automatically generates course outlines, modules, and detailed lessons enrich
 ---
 
 ## 🎥 Demo Video
-![Website Demo](Demo/CurricAIDemo.gif)  
+<p align="center">
+  <img src="Demo/CurricAIDemo.gif" width="700" alt="CurricAI Demo" />
+</p>
 
 ---
 
 ## 💡 Key Highlights
 
-- **🧩 AI-Powered Curriculum Generation**  
-  Converts any topic (e.g., *“Intro to React Hooks”*) into structured courses with modules, lessons, objectives, and key concepts using OpenAI.
-
-- **⚡ Dynamic & Interactive Site**  
-  Real-time course creation and rendering with persistent storage and user-specific sessions — not a static generator.
-
-- **📚 Rich Lesson Experience**  
-  Lessons include text, syntax-highlighted code blocks, MCQs with explanations, and embedded YouTube videos.
-
-- **🔐 Secure Auth & Personalization**  
-  Implemented **Auth0** for OAuth 2.0 login, allowing each user to generate, save, and revisit personalized courses.
-
-- **🧾 Lesson PDF Export**  
-  Added a custom exporter using `jsPDF` and `html2canvas` for offline learning.
-
-- **🌐 Seamless Cloud Deployment**  
-  Frontend hosted on **Vercel**, backend on **Railway**, with CI/CD automation via GitHub Actions.
+- **🧩 AI-Powered Curriculum Generation** – Converts any topic (e.g., *“Intro to React Hooks”*) into structured courses using OpenAI.  
+- **⚡ Dynamic & Interactive Site** – Real-time generation with persistent user-specific storage — not a static generator.  
+- **📚 Rich Lesson Experience** – Lessons include text, code, MCQs, and embedded YouTube videos.  
+- **🔐 Secure Auth & Personalization** – OAuth 2.0 login via Auth0 for user-specific courses.  
+- **🧾 Lesson PDF Export** – Offline download with `jsPDF` and `html2canvas`.  
+- **🌐 Seamless Deployment** – Frontend on Vercel, backend on Railway, CI/CD via GitHub Actions.  
 
 ---
 
 ## 🧠 Technical Architecture
 
 **Frontend:**  
-- Built with **React + Vite** for fast development and modularity.  
-- Global state managed via Context API.  
-- Auth-protected routes using the Auth0 React SDK.
-- Fully responsive UI.  
+- **React + Vite** for fast development and modularity  
+- Global state via Context API  
+- Auth-protected routes with Auth0 React SDK  
+- Fully responsive UI  
 
 **Backend:**  
-- RESTful API built with **Node.js + Express**.  
-- **Mongoose** schemas define relationships: Course → Module → Lesson.  
-- Middleware handles authentication, validation, and centralized error control.  
-- AI services generate course structures and enrich lesson content.
+- **Node.js + Express** REST API  
+- **Mongoose** schemas → Course → Module → Lesson  
+- Middleware for auth and validation  
+- AI service layer for content generation  
 
 **Database:**  
-- **MongoDB Atlas** provides scalable document storage.  
-- Indexed relationships ensure fast retrieval of user-specific data.
+- **MongoDB Atlas** for scalable document storage  
+- Indexed relations for fast retrieval  
 
 **External Integrations:**  
-- **OpenAI API** for course and lesson generation.  
-- **YouTube Data API** for contextual educational videos.
+- **OpenAI API** for course and lesson generation  
+- **YouTube Data API** for video enrichment  
 
 **Deployment:**  
-- **Vercel** for frontend builds and hosting.  
-- **Railway** for backend hosting and environment variables.  
-- **GitHub Actions** for CI/CD pipelines.
+- **Vercel** (frontend)  
+- **Railway** (backend + env vars)  
+- **GitHub Actions** for automated CI/CD  
 
 ---
 
 ## 🧩 System Flow
-
-1. **Prompt Input:** User enters a topic.  
-2. **AI Processing:** Backend calls OpenAI to generate structured course JSON.  
-3. **Data Persistence:** Course, modules, and lessons stored in MongoDB.  
-4. **Rendering:** React frontend dynamically displays the generated content.  
-5. **Enhancements:** Lessons include videos, MCQs, and downloadable PDFs.  
-6. **Personalization:** Auth0 ties saved courses to individual users.
+1. **Prompt Input:** User enters a topic  
+2. **AI Processing:** Backend calls OpenAI to generate structured JSON  
+3. **Persistence:** Data stored in MongoDB  
+4. **Rendering:** Frontend renders interactive content  
+5. **Enhancements:** Videos, quizzes, PDF export  
+6. **Personalization:** Auth0 ties data to user accounts  
 
 ---
 
@@ -82,26 +89,26 @@ It automatically generates course outlines, modules, and detailed lessons enrich
 
 | Feature | Description |
 |----------|-------------|
-| **Prompt-to-Course** | AI-generated structured learning modules |
-| **Dynamic Lesson Renderer** | Renders JSON-based interactive content |
-| **Auth0 Login** | OAuth 2.0 authentication and protected routes |
+| **Prompt-to-Course** | AI-generated structured modules |
+| **Dynamic Renderer** | Interactive JSON-based content |
+| **Auth0 Login** | OAuth 2.0 authentication & protected routes |
 | **Video Integration** | Auto-suggested YouTube resources |
-| **PDF Export** | Download lessons for offline learning |
-| **Persistent Storage** | MongoDB-backed user data and saved courses |
+| **PDF Export** | Offline lesson downloads |
+| **Persistent Storage** | MongoDB-backed user data |
 
 ---
 
 ## 🧑‍💻 Achievements & Learnings
-
-- Engineered a **multi-stage AI prompt pipeline** to sequentially generate course outlines and lessons.  
-- Developed a **modular, scalable MERN architecture** with secure authentication.  
-- Built **robust error handling** for unpredictable AI JSON outputs.  
-- Optimized **API efficiency and token usage** for faster generation.  
-- Delivered a **fully deployed, production-ready stack** integrating multiple APIs securely.
+- Built a **multi-stage AI prompt pipeline** for course and lesson generation.  
+- Developed a **modular MERN architecture** with secure authentication.  
+- Implemented **robust error handling** for AI JSON outputs.  
+- Optimized API efficiency and token usage.  
+- Deployed a **production-ready stack** with CI/CD automation.  
 
 ---
 
-## 📜 Setup Instructions
+<details>
+<summary>📜 Setup Instructions</summary>
 
 ```bash
 # Clone repository
